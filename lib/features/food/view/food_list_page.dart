@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/food_card.dart';
 
 class FoodListPage extends StatelessWidget {
   const FoodListPage({super.key});
