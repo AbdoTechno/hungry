@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:hungry/core/constants/app_colors.dart';
+import 'package:hungry/core/theme/app_colors.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
 import 'package:hungry/features/auth/view/login_view.dart';
 
@@ -17,7 +17,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
-      _navigate(context);
+      if (mounted) {
+        _navigate(context);
+      }
     });
   }
 
