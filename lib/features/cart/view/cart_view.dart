@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+class CartView extends StatelessWidget {
+  const CartView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Profile', style: TextStyle(color: Colors.black)),
+        child: Text('Cart', style: TextStyle(color: Colors.black)),
       ),
     );
   }

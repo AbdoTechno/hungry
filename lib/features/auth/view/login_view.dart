@@ -6,6 +6,7 @@ import 'package:hungry/core/constants/app_sizes.dart';
 import 'package:hungry/core/utils/validators.dart';
 import 'package:hungry/features/auth/widgets/custom_text_form_field.dart';
 import 'package:hungry/features/home/view/home_view.dart';
+import 'package:hungry/features/auth/view/signup_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -247,7 +248,14 @@ class _LoginViewState extends State<LoginView> {
                                     ),
                                   ),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const SignupView(),
+                                        ),
+                                      );
+                                    },
                                     style: TextButton.styleFrom(
                                       padding: EdgeInsets.symmetric(
                                         horizontal: AppSizes.spacingWidth8,

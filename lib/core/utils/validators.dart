@@ -10,6 +10,8 @@ class Validators {
     r'[!@#$%^&*(),.?":{}|<>\-_=+\\\/\[\]~`@#\$%\^&\*\(\)\+=\{\}\[\];:\?<>\.\/]',
   );
 
+  static final RegExp _phoneRegex = RegExp(r'^\+?[0-9]{9,15}$');
+
   static bool isNotEmpty(String? value) {
     return value != null && value.trim().isNotEmpty;
   }
@@ -48,6 +50,17 @@ class Validators {
     }
     if (!_specialCharRegex.hasMatch(value)) {
       return 'Password must contain at least one special character';
+    }
+    return null;
+  }
+
+  /// Validates phone number format
+  static String? validatePhone(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Please enter your phone number';
+    }
+    if (!_phoneRegex.hasMatch(value.trim())) {
+      return 'Please enter a valid phone number';
     }
     return null;
   }

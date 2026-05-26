@@ -16,6 +16,12 @@ class AppSizes {
   static double get spacingWidth438 => 438.w;
   static double get spacingWidth280 => 280.w;
   static double get spacingWidth250 => 258.w;
+  static double get spacingWidth200 => 200.w;
+  static double get spacingWidth150 => 150.w;
+  static double get spacingWidth100 => 100.w;
+  static double get spacingWidth80 => 80.w;
+  static double get spacingWidth60 => 60.w;
+  static double get spacingWidth55 => 55.w;
   static double get spacingWidth32 => 32.w;
   static double get spacingWidth24 => 24.w;
   static double get spacingWidth20 => 20.w;
@@ -35,6 +41,8 @@ class AppSizes {
   static double get spacingHeight120 => 120.h;
   static double get spacingHeight112 => 112.h;
   static double get spacingHeight90 => 90.h;
+  static double get spacingHeight80 => 80.h;
+  static double get spacingHeight70 => 70.h;
   static double get spacingHeight60 => 60.h;
   static double get spacingHeight52 => 52.h;
   static double get spacingHeight45 => 45.h;
@@ -50,6 +58,7 @@ class AppSizes {
   static double get spacingHeight2 => 2.h;
 
   // ===== Border Radius =====
+  static double get borderRadius100 => 100.r;
   static double get borderRadius65 => 65.r;
   static double get borderRadius30 => 30.r;
   static double get borderRadius24 => 24.r;
