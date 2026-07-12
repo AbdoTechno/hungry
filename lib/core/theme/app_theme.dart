@@ -80,10 +80,15 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.textWhite,
-        minimumSize: Size(double.infinity, AppSizes.spacingHeight52),
+        minimumSize: Size(
+          double.infinity,
+          AppSizes.spacingHeight52,
+        ),
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSizes.borderRadius16),
+          borderRadius: BorderRadius.circular(
+            AppSizes.borderRadius16,
+          ),
         ),
         textStyle: TextStyle(
           fontSize: AppSizes.fontSize16,
@@ -111,7 +116,9 @@ class AppTheme {
           width: AppSizes.borderWidth2,
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSizes.borderRadius16),
+          borderRadius: BorderRadius.circular(
+            AppSizes.borderRadius16,
+          ),
         ),
       ),
     ),
@@ -129,22 +136,30 @@ class AppTheme {
         fontSize: AppSizes.fontSize14,
       ),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(AppSizes.borderRadius16),
+        borderRadius: BorderRadius.circular(
+          AppSizes.borderRadius16,
+        ),
         borderSide: BorderSide.none,
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(AppSizes.borderRadius16),
+        borderRadius: BorderRadius.circular(
+          AppSizes.borderRadius16,
+        ),
         borderSide: BorderSide.none,
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(AppSizes.borderRadius16),
+        borderRadius: BorderRadius.circular(
+          AppSizes.borderRadius16,
+        ),
         borderSide: BorderSide(
           color: AppColors.primary,
           width: AppSizes.borderWidth2,
         ),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(AppSizes.borderRadius16),
+        borderRadius: BorderRadius.circular(
+          AppSizes.borderRadius16,
+        ),
         borderSide: BorderSide(
           color: AppColors.error,
           width: AppSizes.borderWidth2,
@@ -158,7 +173,9 @@ class AppTheme {
       elevation: 2,
       margin: EdgeInsets.all(AppSizes.spacingWidth8),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppSizes.borderRadius20),
+        borderRadius: BorderRadius.circular(
+          AppSizes.borderRadius20,
+        ),
       ),
     ),
 
@@ -175,24 +192,6 @@ class AppTheme {
       size: AppSizes.iconSize24,
     ),
 
-    // ===== Floating Action Button =====
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: AppColors.primary,
-      foregroundColor: AppColors.textWhite,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppSizes.borderRadius16),
-      ),
-    ),
-
-    // ===== Bottom Navigation =====
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: AppColors.primary,
-      selectedItemColor: AppColors.textWhite,
-      unselectedItemColor: AppColors.navInactive,
-      selectedLabelStyle: TextStyle(fontSize: AppSizes.fontSize12),
-      unselectedLabelStyle: TextStyle(fontSize: AppSizes.fontSize12),
-      type: BottomNavigationBarType.fixed,
-      elevation: 8,
-    ),
+  
   );
 }

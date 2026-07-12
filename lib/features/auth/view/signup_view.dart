@@ -125,7 +125,7 @@ class _SignupViewState extends State<SignupView> {
                       Text(
                         'Create an account to start your food journey',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppColors.textWhite.withOpacity(0.85),
+                          color: AppColors.textWhite.withValues(alpha: 0.85),
                           fontWeight: FontWeight.w300,
                         ),
                       ),
@@ -145,7 +145,7 @@ class _SignupViewState extends State<SignupView> {
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.12),
+                              color: Colors.black.withValues(alpha: 0.12),
                               blurRadius: 24,
                               offset: const Offset(0, 8),
                             ),
@@ -182,7 +182,7 @@ class _SignupViewState extends State<SignupView> {
                                 textInputAction: TextInputAction.next,
                                 prefixIcon: Icon(
                                   Icons.person_outline,
-                                  color: AppColors.primary.withOpacity(0.7),
+                                  color: AppColors.primary.withValues(alpha: 0.7),
                                 ),
                               ),
 
@@ -197,7 +197,7 @@ class _SignupViewState extends State<SignupView> {
                                 textInputAction: TextInputAction.next,
                                 prefixIcon: Icon(
                                   Icons.phone_outlined,
-                                  color: AppColors.primary.withOpacity(0.7),
+                                  color: AppColors.primary.withValues(alpha: 0.7),
                                 ),
                               ),
 
@@ -212,7 +212,7 @@ class _SignupViewState extends State<SignupView> {
                                 textInputAction: TextInputAction.next,
                                 prefixIcon: Icon(
                                   Icons.email_outlined,
-                                  color: AppColors.primary.withOpacity(0.7),
+                                  color: AppColors.primary.withValues(alpha: 0.7),
                                 ),
                               ),
 
@@ -228,7 +228,7 @@ class _SignupViewState extends State<SignupView> {
                                 obscureText: true,
                                 prefixIcon: Icon(
                                   Icons.lock_outline,
-                                  color: AppColors.primary.withOpacity(0.7),
+                                  color: AppColors.primary.withValues(alpha: 0.7),
                                 ),
                               ),
 
@@ -252,7 +252,7 @@ class _SignupViewState extends State<SignupView> {
                                 obscureText: true,
                                 prefixIcon: Icon(
                                   Icons.lock_outline,
-                                  color: AppColors.primary.withOpacity(0.7),
+                                  color: AppColors.primary.withValues(alpha: 0.7),
                                 ),
                               ),
 

@@ -17,7 +17,9 @@ class AppSizes {
   static double get spacingWidth280 => 280.w;
   static double get spacingWidth250 => 258.w;
   static double get spacingWidth200 => 200.w;
+  static double get spacingWidth180 => 180.w;
   static double get spacingWidth150 => 150.w;
+  static double get spacingWidth120 => 120.w;
   static double get spacingWidth100 => 100.w;
   static double get spacingWidth80 => 80.w;
   static double get spacingWidth60 => 60.w;
@@ -53,6 +55,7 @@ class AppSizes {
   static double get spacingHeight20 => 20.h;
   static double get spacingHeight16 => 16.h;
   static double get spacingHeight12 => 12.h;
+  static double get spacingHeight10 => 10.h;
   static double get spacingHeight8 => 8.h;
   static double get spacingHeight4 => 4.h;
   static double get spacingHeight2 => 2.h;

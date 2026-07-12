@@ -118,7 +118,7 @@ class _LoginViewState extends State<LoginView> {
                       Text(
                         'Login to continue your food journey',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppColors.textWhite.withOpacity(0.85),
+                          color: AppColors.textWhite.withValues(alpha: 0.85),
                           fontWeight: FontWeight.w300,
                         ),
                       ),
@@ -138,7 +138,7 @@ class _LoginViewState extends State<LoginView> {
                           ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.12),
+                              color: Colors.black.withValues(alpha: 0.12),
                               blurRadius: 24,
                               offset: const Offset(0, 8),
                             ),
@@ -173,7 +173,7 @@ class _LoginViewState extends State<LoginView> {
 
                                 prefixIcon: Icon(
                                   Icons.email_outlined,
-                                  color: AppColors.primary.withOpacity(0.7),
+                                  color: AppColors.primary.withValues(alpha: 0.7),
                                 ),
                               ),
 
@@ -189,7 +189,7 @@ class _LoginViewState extends State<LoginView> {
                                 obscureText: true,
                                 prefixIcon: Icon(
                                   Icons.lock_outline,
-                                  color: AppColors.primary.withOpacity(0.7),
+                                  color: AppColors.primary.withValues(alpha: 0.7),
                                 ),
                               ),
 

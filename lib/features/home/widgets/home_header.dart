@@ -42,7 +42,7 @@ class HomeHeader extends StatelessWidget {
                 ),
               ],
             ),
-            
+
             // Right Side: Perfectly Circular Profile Avatar
             Container(
               decoration: BoxDecoration(
@@ -59,16 +59,24 @@ class HomeHeader extends StatelessWidget {
                   ),
                 ],
               ),
-              child: CircleAvatar(
-                radius: 30.r,
-                backgroundColor: AppColors.primary.withAlpha(20),
-                backgroundImage: const NetworkImage(
-                  'https://media.licdn.com/dms/image/v2/D4D03AQElTqd4x3zyiA/profile-displayphoto-scale_100_100/B4DZ3DlyiBH8Ac-/0/1777102959485?e=1781136000&v=beta&t=cAS_V77sl2sdBuD37rKeLaXWiZdiZ_lcW4zdpwo4c2k',
-                ),
-                child: Icon(
-                  Icons.person_outline,
-                  color: AppColors.primary,
-                  size: 24.r,
+              child: ClipOval(
+                child: Container(
+                  width: 60.r,
+                  height: 60.r,
+                  color: AppColors.primary.withAlpha(20),
+                  child: SvgPicture.network(
+                    'https://www.svgrepo.com/show/506667/person.svg',
+                    width: 60.r,
+                    height: 60.r,
+                    fit: BoxFit.cover,
+                    placeholderBuilder: (context) => Center(
+                      child: Icon(
+                        Icons.person_outline,
+                        color: AppColors.primary,
+                        size: 24.r,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ),
