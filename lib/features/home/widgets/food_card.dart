@@ -36,7 +36,6 @@ class FoodCard extends StatelessWidget {
                 ),
               ),
               Gap(AppSizes.spacingHeight10),
-
               Text(
                 title,
                 style: Theme.of(context)
@@ -46,7 +45,6 @@ class FoodCard extends StatelessWidget {
                       color: AppColors.textPrimary,
                     ),
               ),
-
               Text(
                 restaurant,
                 style: Theme.of(context)
@@ -56,7 +54,6 @@ class FoodCard extends StatelessWidget {
                       color: AppColors.textPrimary,
                     ),
               ),
-
               Row(
                 mainAxisAlignment:
                     MainAxisAlignment.spaceBetween,

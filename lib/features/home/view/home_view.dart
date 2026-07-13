@@ -8,6 +8,7 @@ import 'package:hungry/features/home/widgets/food_card.dart';
 import 'package:hungry/features/home/widgets/home_categories.dart';
 import 'package:hungry/features/home/widgets/home_header.dart';
 import 'package:hungry/features/home/widgets/home_search_bar.dart';
+import 'package:hungry/features/product/view/product_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -53,11 +54,21 @@ class HomeView extends StatelessWidget {
                 ),
                 sliver: SliverGrid.builder(
                   itemBuilder: (context, index) =>
-                      const FoodCard(
-                        image: 'assets/images/food2.png',
-                        title: 'Cheeseburger',
-                        restaurant: "Wendy's Burger",
-                        rating: 4.9,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ProductDetailsView(),
+                            ),
+                          );
+                        },
+                        child: FoodCard(
+                          image: 'assets/images/food2.png',
+                          title: 'Cheeseburger',
+                          restaurant: "Wendy's Burger",
+                          rating: 4.9,
+                        ),
                       ),
                   itemCount: 10,
                   gridDelegate:

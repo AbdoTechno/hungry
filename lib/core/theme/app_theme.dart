@@ -39,39 +39,39 @@ class AppTheme {
       headlineLarge: TextStyle(
         fontSize: AppSizes.fontSize40,
         fontWeight: FontWeight.bold,
-        color: AppColors.textWhite,
+        color: AppColors.textPrimary,
       ),
       headlineMedium: TextStyle(
         fontSize: AppSizes.fontSize24,
         fontWeight: FontWeight.w700,
-        color: AppColors.textWhite,
+        color: AppColors.textPrimary,
       ),
       headlineSmall: TextStyle(
         fontSize: AppSizes.fontSize20,
         fontWeight: FontWeight.w600,
-        color: AppColors.textWhite,
+        color: AppColors.textPrimary,
       ),
       titleLarge: TextStyle(
         fontSize: AppSizes.fontSize20,
         fontWeight: FontWeight.w600,
-        color: AppColors.textWhite,
+        color: AppColors.textPrimary,
       ),
       titleMedium: TextStyle(
         fontSize: AppSizes.fontSize18,
         fontWeight: FontWeight.w500,
-        color: AppColors.textWhite,
+        color: AppColors.textPrimary,
       ),
       bodyLarge: TextStyle(
         fontSize: AppSizes.fontSize16,
-        color: AppColors.textWhite,
+        color: AppColors.textPrimary,
       ),
       bodyMedium: TextStyle(
         fontSize: AppSizes.fontSize14,
-        color: AppColors.textWhite,
+        color: AppColors.textPrimary,
       ),
       bodySmall: TextStyle(
         fontSize: AppSizes.fontSize12,
-        color: AppColors.textWhite,
+        color: AppColors.textPrimary,
       ),
     ),
 
@@ -191,7 +191,5 @@ class AppTheme {
       color: AppColors.primary,
       size: AppSizes.iconSize24,
     ),
-
-  
   );
 }
