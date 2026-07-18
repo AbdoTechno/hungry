@@ -1,7 +1,7 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hungry/core/theme/app_theme.dart';
-import 'package:hungry/features/auth/view/login_view.dart';
+import 'package:hungry/splash.dart';
 // import 'package:hungry/splash.dart';
 
 void main() async {
@@ -24,7 +24,7 @@ class HungryApp extends StatelessWidget {
           theme: AppTheme.lightTheme,
           debugShowCheckedModeBanner: false,
           title: 'Hungry',
-          home: LoginView(),
+          home: SplashScreen(),
         );
       },
     );

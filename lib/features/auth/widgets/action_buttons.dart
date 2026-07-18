@@ -34,8 +34,15 @@ class ActionButtons extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton.icon(
               onPressed: onEdit,
-              icon: const Icon(Icons.edit_outlined),
-              label: const Text('Edit Profile'),
+              icon: const Icon(Icons.edit_outlined, size: 20),
+              label: const Text(
+                'Edit Profile',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.2,
+                ),
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 foregroundColor: Colors.white,
@@ -43,34 +50,39 @@ class ActionButtons extends StatelessWidget {
                   vertical: AppSizes.spacingHeight16,
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    AppSizes.borderRadius12,
-                  ),
+                  borderRadius: BorderRadius.circular(16),
                 ),
-                elevation: 0,
+                elevation: 4,
+                shadowColor: AppColors.primary.withValues(alpha: 0.25),
               ),
             ),
           ),
-          Gap(AppSizes.spacingHeight12),
+          Gap(AppSizes.spacingHeight16),
           SizedBox(
             width: double.infinity,
             child: OutlinedButton.icon(
               onPressed: onLogout,
-              icon: const Icon(Icons.logout_outlined),
-              label: const Text('Log out'),
+              icon: const Icon(Icons.logout_rounded, size: 20),
+              label: const Text(
+                'Log out',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0.2,
+                ),
+              ),
               style: OutlinedButton.styleFrom(
-                foregroundColor: Colors.red,
-                side: const BorderSide(
-                  color: Colors.red,
+                foregroundColor: Colors.red.shade700,
+                backgroundColor: Colors.red.shade50.withValues(alpha: 0.4),
+                side: BorderSide(
+                  color: Colors.red.shade200,
                   width: 1.5,
                 ),
                 padding: EdgeInsets.symmetric(
                   vertical: AppSizes.spacingHeight16,
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    AppSizes.borderRadius12,
-                  ),
+                  borderRadius: BorderRadius.circular(16),
                 ),
               ),
             ),
