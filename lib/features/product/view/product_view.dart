@@ -69,7 +69,7 @@ class _ProductDetailsViewState
                   clipBehavior: Clip.none,
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,
-                  separatorBuilder: (_, __) =>
+                  separatorBuilder: (_, _) =>
                       Gap(AppSizes.spacingWidth16),
                   itemBuilder: (context, index) {
                     return ToppingsCard(
@@ -99,7 +99,7 @@ class _ProductDetailsViewState
                   clipBehavior: Clip.none,
                   scrollDirection: Axis.horizontal,
                   itemCount: 10,
-                  separatorBuilder: (_, __) =>
+                  separatorBuilder: (_, _) =>
                       Gap(AppSizes.spacingWidth16),
                   itemBuilder: (context, index) {
                     return ToppingsCard(

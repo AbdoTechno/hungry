@@ -15,8 +15,6 @@ class Root extends StatefulWidget {
 class _RootState extends State<Root> {
   int _currentIndex = 0;
 
-  late final PageController _pageController;
-
   final List<Widget> _screens = const [
     HomeView(),
     CartView(),
@@ -24,26 +22,10 @@ class _RootState extends State<Root> {
     ProfileView(),
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
   void _changePage(int index) {
-    setState(() => _currentIndex = index);
-
-    _pageController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 350),
-      curve: Curves.easeInOut,
-    );
+    setState(() {
+      _currentIndex = index;
+    });
   }
 
   @override
@@ -51,17 +33,15 @@ class _RootState extends State<Root> {
     return Scaffold(
       extendBody: true,
       resizeToAvoidBottomInset: false,
-
       body: Stack(
         children: [
-          /// Pages
-          PageView(
-            controller: _pageController,
-            physics: const NeverScrollableScrollPhysics(),
+          // IndexedStack – يحتفظ بجميع الصفحات ويعرض واحدة فقط
+          IndexedStack(
+            index: _currentIndex,
             children: _screens,
           ),
 
-          /// Floating Bottom Bar
+          // Bottom Bar
           Positioned(
             left: 20,
             right: 20,

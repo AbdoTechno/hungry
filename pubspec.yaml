@@ -38,6 +38,8 @@ dependencies:
   flutter_screenutil: ^5.9.3
   gap: ^3.0.1
   persistent_bottom_nav_bar_v2: ^6.3.2
+  flutter_staggered_animations: ^1.1.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

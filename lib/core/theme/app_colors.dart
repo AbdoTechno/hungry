@@ -42,4 +42,7 @@ class AppColors {
   // Bottom Navigation
   static const Color navActive = primary;
   static const Color navInactive = Color(0xFF9CA3AF);
+  // tileColor
+
+  static const Color tileColor = Color(0xFF3C2F2F);
 }

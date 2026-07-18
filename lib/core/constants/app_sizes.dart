@@ -14,16 +14,20 @@ class AppSizes {
 
   // ===== Spacing Width =====
   static double get spacingWidth438 => 438.w;
+  static double get spacingWidth380 => 380.w;
   static double get spacingWidth280 => 280.w;
   static double get spacingWidth250 => 258.w;
   static double get spacingWidth200 => 200.w;
   static double get spacingWidth180 => 180.w;
   static double get spacingWidth150 => 150.w;
   static double get spacingWidth120 => 120.w;
+  static double get spacingWidth110 => 110.w;
   static double get spacingWidth100 => 100.w;
   static double get spacingWidth80 => 80.w;
   static double get spacingWidth60 => 60.w;
   static double get spacingWidth55 => 55.w;
+  static double get spacingWidth50 => 50.w;
+  static double get spacingWidth40 => 40.w;
   static double get spacingWidth32 => 32.w;
   static double get spacingWidth24 => 24.w;
   static double get spacingWidth20 => 20.w;
@@ -35,8 +39,11 @@ class AppSizes {
 
   // ===== Spacing Height =====
   static double get spacingHeight350 => 350.h;
+  static double get spacingHeight300 => 300.h;
   static double get spacingHeight290 => 290.h;
   static double get spacingHeight250 => 250.h;
+  static double get spacingHeight220 => 220.h;
+  static double get spacingHeight200 => 200.h;
   static double get spacingHeight180 => 180.h;
   static double get spacingHeight170 => 170.h;
   static double get spacingHeight150 => 150.h;
@@ -45,10 +52,13 @@ class AppSizes {
   static double get spacingHeight125 => 125.h;
   static double get spacingHeight120 => 120.h;
   static double get spacingHeight112 => 112.h;
+  static double get spacingHeight110 => 110.h;
+  static double get spacingHeight100 => 100.h;
   static double get spacingHeight90 => 90.h;
   static double get spacingHeight80 => 80.h;
   static double get spacingHeight70 => 70.h;
   static double get spacingHeight60 => 60.h;
+  static double get spacingHeight50 => 50.h;
   static double get spacingHeight52 => 52.h;
   static double get spacingHeight45 => 45.h;
   static double get spacingHeight40 => 40.h;

@@ -17,26 +17,10 @@ class FloatingBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = [
-      (
-        icon: CupertinoIcons.home,
-        activeIcon: CupertinoIcons.house_fill,
-        label: "Home",
-      ),
-      (
-        icon: CupertinoIcons.bag,
-        activeIcon: CupertinoIcons.bag_fill,
-        label: "Cart",
-      ),
-      (
-        icon: Icons.restaurant_outlined,
-        activeIcon: Icons.restaurant,
-        label: "History",
-      ),
-      (
-        icon: CupertinoIcons.person,
-        activeIcon: CupertinoIcons.person_fill,
-        label: "Profile",
-      ),
+      (icon: CupertinoIcons.home, activeIcon: CupertinoIcons.house_fill, label: "Home"),
+      (icon: CupertinoIcons.bag, activeIcon: CupertinoIcons.bag_fill, label: "Cart"),
+      (icon: Icons.restaurant_outlined, activeIcon: Icons.restaurant, label: "History"),
+      (icon: CupertinoIcons.person, activeIcon: CupertinoIcons.person_fill, label: "Profile"),
     ];
 
     return Material(
@@ -49,7 +33,7 @@ class FloatingBottomBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(26.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(.16),
+              color: Colors.black.withValues(alpha: .16),
               blurRadius: 20,
               offset: const Offset(0, 10),
             ),
@@ -66,26 +50,19 @@ class FloatingBottomBar extends StatelessWidget {
                 onTap: () => onTap(index),
                 child: AnimatedContainer(
                   height: AppSizes.spacingHeight40,
-                  duration: const Duration(
-                    milliseconds: 100,
-                  ),
-                  curve: Curves.easeIn,
+                  duration: const Duration(milliseconds: 350),
+                  curve: Curves.easeInOut,
                   margin: EdgeInsets.symmetric(
                     vertical: 7.h,
                     horizontal: 3.w,
                   ),
                   decoration: BoxDecoration(
-                    color: selected
-                        ? Colors.white
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.circular(
-                      20.r,
-                    ),
+                    color: selected ? Colors.white : Colors.transparent,
+                    borderRadius: BorderRadius.circular(20.r),
                     boxShadow: selected
                         ? [
                             BoxShadow(
-                              color: Colors.white
-                                  .withOpacity(.24),
+                              color: Colors.white.withValues(alpha: .24),
                               blurRadius: 10,
                               spreadRadius: 1,
                               offset: const Offset(0, 2),
@@ -94,23 +71,16 @@ class FloatingBottomBar extends StatelessWidget {
                         : null,
                   ),
                   child: Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        selected
-                            ? item.activeIcon
-                            : item.icon,
-                        color: selected
-                            ? AppColors.primary
-                            : Colors.white,
+                        selected ? item.activeIcon : item.icon,
+                        color: selected ? AppColors.primary : Colors.white,
                         size: 22.sp,
                       ),
-
                       AnimatedSize(
-                        duration: const Duration(
-                          milliseconds: 250,
-                        ),
+                        duration: const Duration(milliseconds: 350),
+                        curve: Curves.easeInOut,
                         child: selected
                             ? Row(
                                 children: [
@@ -118,10 +88,8 @@ class FloatingBottomBar extends StatelessWidget {
                                   Text(
                                     item.label,
                                     style: TextStyle(
-                                      color:
-                                          AppColors.primary,
-                                      fontWeight:
-                                          FontWeight.w700,
+                                      color: AppColors.primary,
+                                      fontWeight: FontWeight.w700,
                                       fontSize: 12.sp,
                                     ),
                                   ),
