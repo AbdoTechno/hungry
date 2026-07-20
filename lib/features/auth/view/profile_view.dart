@@ -49,7 +49,7 @@ class _ProfileViewState extends State<ProfileView> {
                   ),
                   IconButton(
                     icon: const Icon(
-                      Icons.settings_outlined,
+                      Icons.settings_sharp,
                       color: AppColors.textPrimary,
                       size: 24,
                     ),
