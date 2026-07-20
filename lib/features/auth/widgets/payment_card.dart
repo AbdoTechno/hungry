@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:hungry/core/constants/app_sizes.dart';
 
 class PaymentCard extends StatelessWidget {
   const PaymentCard({
     super.key,
     required this.cardType,
     required this.cardNumber,
+    required this.cardName,
+    required this.expiryDate,
+    this.image,
   });
 
   final String cardType;
   final String cardNumber;
+  final String cardName;
+  final String expiryDate;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +43,7 @@ class PaymentCard extends StatelessWidget {
             gradient: const LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [
-                Color(0xFF0F6327),
-                Color(0xFF052B0E),
-              ],
+              colors: [Color(0xFF0F6327), Color(0xFF052B0E)],
             ),
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
@@ -78,7 +82,7 @@ class PaymentCard extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: EdgeInsets.all(AppSizes.spacingWidth24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,8 +94,8 @@ class PaymentCard extends StatelessWidget {
                       children: [
                         // Visa Logo Asset
                         Image.asset(
-                          'assets/images/visa.png',
-                          height: 22,
+                          image ?? 'assets/images/visa.png',
+                          height: AppSizes.spacingHeight30,
                           fit: BoxFit.contain,
                           errorBuilder: (context, error, stackTrace) {
                             return const Text(
@@ -117,8 +121,8 @@ class PaymentCard extends StatelessWidget {
                               width: 0.8,
                             ),
                           ),
-                          child: const Text(
-                            'Debit card',
+                          child: Text(
+                            cardType.toString(),
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 11,
@@ -206,8 +210,8 @@ class PaymentCard extends StatelessWidget {
                               ),
                             ),
                             const Gap(4),
-                            const Text(
-                              'Knuckles',
+                            Text(
+                              cardName,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14,
@@ -230,8 +234,8 @@ class PaymentCard extends StatelessWidget {
                               ),
                             ),
                             const Gap(4),
-                            const Text(
-                              '12/28',
+                            Text(
+                              expiryDate,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14,

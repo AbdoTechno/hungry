@@ -15,9 +15,9 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  final String userName = "Knuckles";
-  final String userEmail = "Knuckles@gmail.com";
-  final String userAddress = "55 Dubai, UAE";
+  final String userName = "AbdoTechno";
+  final String userEmail = "abdo@gmail.com";
+  final String userAddress = "55 Cairo, Egypt";
   final String passwordMasked = "●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●";
   final String cardType = "VISA";
   final String cardNumber = "3566 **** **** 0505";
@@ -35,13 +35,10 @@ class _ProfileViewState extends State<ProfileView> {
           ),
           child: Column(
             children: [
-              // Top Profile Header Navigation Row
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(
-                    width: 48,
-                  ), // Spacer to balance settings button
+                  const SizedBox(width: 48),
                   Text(
                     'Profile',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -65,11 +62,8 @@ class _ProfileViewState extends State<ProfileView> {
                 ],
               ),
               Gap(AppSizes.spacingHeight16),
-              // 1. الهيدر (الصورة + الاسم)
               ProfileHeader(userName: userName),
               Gap(AppSizes.spacingHeight24),
-
-              // 2. بطاقة المعلومات الشخصية
               ProfileInfoCard(
                 name: userName,
                 email: userEmail,
@@ -77,25 +71,25 @@ class _ProfileViewState extends State<ProfileView> {
                 password: passwordMasked,
               ),
               Gap(AppSizes.spacingHeight24),
-
-              // 3. بطاقة الدفع
-              PaymentCard(cardType: cardType, cardNumber: cardNumber),
+              PaymentCard(
+                cardType: cardType,
+                cardNumber: cardNumber,
+                cardName: "AbdoTechno",
+                expiryDate: "12/25",
+                image: "assets/images/visa.png",
+              ),
               Gap(AppSizes.spacingHeight32),
-
-              // 4. أزرار الإجراءات
               ActionButtons(
                 onEdit: () {
-                  // TODO: التنقل لصفحة تعديل الملف الشخصي
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Edit Profile pressed')),
                   );
                 },
                 onLogout: () {
-                  // TODO: تنفيذ تسجيل الخروج
                   Navigator.pushReplacementNamed(context, '/login');
                 },
               ),
-              Gap(AppSizes.spacingHeight20),
+              Gap(AppSizes.spacingHeight100),
             ],
           ),
         ),

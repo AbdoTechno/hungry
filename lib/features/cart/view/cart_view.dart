@@ -82,6 +82,17 @@ class _CartViewState extends State<CartView> {
             right: AppSizes.spacingWidth16,
             bottom: AppSizes.spacingHeight100,
           ),
+          decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.08),
+                blurRadius: 15,
+                spreadRadius: 1,
+                offset: const Offset(0, -5),
+              ),
+            ],
+          ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

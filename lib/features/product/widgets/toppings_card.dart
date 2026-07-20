@@ -1,91 +1,140 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
+import 'package:hungry/core/theme/app_colors.dart';
 
 class ToppingsCard extends StatelessWidget {
   final String image;
   final String title;
+  final String? price;
+  final bool isSelected;
   final VoidCallback? onAdd;
+  final VoidCallback? onTap;
   final Color buttonColor;
+
   const ToppingsCard({
     super.key,
     required this.image,
     required this.title,
+    this.price,
+    this.isSelected = false,
     this.onAdd,
-    this.buttonColor = Colors.red,
+    this.onTap,
+    this.buttonColor = AppColors.primary,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: AppSizes.spacingHeight150,
-      width: AppSizes.spacingWidth100,
-      decoration: BoxDecoration(
-        color: const Color(0xff433536),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: .08),
-                  blurRadius: 10,
-                ),
-              ],
-            ),
-            padding: const EdgeInsets.all(12),
-            child: Image.asset(
-              image,
-              fit: BoxFit.contain,
-              height: AppSizes.spacingHeight60,
-              width: AppSizes.spacingWidth80,
-            ),
+    return GestureDetector(
+      onTap: onTap ?? onAdd,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        width: 105.w,
+        decoration: BoxDecoration(
+          color: AppColors.tileColor,
+          borderRadius: BorderRadius.circular(AppSizes.borderRadius20),
+          border: Border.all(
+            color: isSelected ? AppColors.primary : Colors.transparent,
+            width: AppSizes.borderWidth2,
           ),
-          Expanded(
-            flex: 3,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8,
-                vertical: 6,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: onAdd,
-                    child: Container(
-                      width: 24,
-                      height: 24,
-                      decoration: BoxDecoration(
-                        color: buttonColor,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.add,
-                        color: Colors.white,
-                        size: 16,
-                      ),
-                    ),
+          boxShadow: [
+            BoxShadow(
+              color: isSelected
+                  ? AppColors.primary.withValues(alpha: 0.25)
+                  : Colors.black.withValues(alpha: 0.06),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Image Container
+            Container(
+              height: 72.h,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(AppSizes.borderRadius20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: .06),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
                   ),
                 ],
               ),
+              padding: EdgeInsets.all(8.r),
+              child: Image.asset(
+                image,
+                fit: BoxFit.contain,
+              ),
             ),
-          ),
-        ],
+
+            // Title, Price, & Action Button
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: AppSizes.spacingWidth8,
+                vertical: 6.h,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: AppColors.textWhite,
+                                fontSize: AppSizes.fontSize12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ),
+                      Gap(AppSizes.spacingWidth4),
+                      GestureDetector(
+                        onTap: onAdd ?? onTap,
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          width: 24.r,
+                          height: 24.r,
+                          decoration: BoxDecoration(
+                            color: isSelected ? AppColors.primary : buttonColor,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            isSelected ? Icons.check : Icons.add,
+                            color: Colors.white,
+                            size: AppSizes.iconSize16,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (price != null) ...[
+                    Gap(AppSizes.spacingHeight2),
+                    Text(
+                      price!,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: isSelected
+                                ? AppColors.primaryLight
+                                : Colors.white70,
+                            fontSize: 10.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

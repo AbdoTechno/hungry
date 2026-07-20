@@ -31,10 +31,7 @@ class ProfileHeader extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: const LinearGradient(
-                    colors: [
-                      AppColors.primary,
-                      Color(0xFF0F6327),
-                    ],
+                    colors: [AppColors.primary, Color(0xFF0F6327)],
                   ),
                   boxShadow: [
                     BoxShadow(
@@ -74,10 +71,7 @@ class ProfileHeader extends StatelessWidget {
                         offset: const Offset(0, 3),
                       ),
                     ],
-                    border: Border.all(
-                      color: AppColors.primary,
-                      width: 1.5,
-                    ),
+                    border: Border.all(color: AppColors.primary, width: 1.5),
                   ),
                   child: const Center(
                     child: Icon(
@@ -94,17 +88,14 @@ class ProfileHeader extends StatelessWidget {
           Text(
             userName,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.textPrimary,
-                  letterSpacing: 0.5,
-                ),
+              fontWeight: FontWeight.bold,
+              color: AppColors.textPrimary,
+              letterSpacing: 0.5,
+            ),
           ),
           Gap(AppSizes.spacingHeight8),
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 6,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(
               color: AppColors.primary.withValues(alpha: 0.08),
               borderRadius: BorderRadius.circular(20),
