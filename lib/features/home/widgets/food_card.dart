@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
 import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 
 class FoodCard extends StatelessWidget {
   const FoodCard({
@@ -24,56 +25,58 @@ class FoodCard extends StatelessWidget {
       width: AppSizes.spacingWidth150,
       child: Card(
         child: Padding(
-          padding: EdgeInsets.all(AppSizes.spacingWidth16),
+          padding: EdgeInsets.symmetric(
+            horizontal: AppSizes.spacingWidth12,
+            vertical: AppSizes.spacingHeight8,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Center(
                 child: Image.asset(
                   image,
-                  width: AppSizes.spacingWidth120,
+                  height: AppSizes.spacingHeight120,
+                  fit: BoxFit.contain,
                 ),
               ),
-              Gap(AppSizes.spacingHeight10),
+              Gap(AppSizes.spacingHeight4),
               Text(
                 title,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(
-                      color: AppColors.textPrimary,
-                    ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: context.textPrimaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               Text(
                 restaurant,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(
-                      color: AppColors.textPrimary,
-                    ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: context.textSecondaryColor,
+                ),
               ),
+              Gap(AppSizes.spacingHeight4),
               Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      const Icon(
+                      Icon(
                         CupertinoIcons.star_fill,
-                        color: Colors.amberAccent,
-                        size: 18,
+                        color: AppColors.starRating,
+                        size: AppSizes.iconSize16,
                       ),
-                      Gap(AppSizes.spacingHeight10),
+                      Gap(AppSizes.spacingWidth4),
                       Text(
                         rating.toString(),
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(
-                              color: AppColors.textPrimary,
-                            ),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: context.textPrimaryColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: AppSizes.fontSize12,
+                        ),
                       ),
                     ],
                   ),
@@ -83,8 +86,8 @@ class FoodCard extends StatelessWidget {
                     },
                     child: Icon(
                       CupertinoIcons.heart_fill,
-                      color: Colors.redAccent,
-                      size: 18,
+                      color: AppColors.error,
+                      size: AppSizes.iconSize16,
                     ),
                   ),
                 ],

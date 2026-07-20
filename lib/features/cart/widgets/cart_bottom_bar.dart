@@ -2,28 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
 import 'package:hungry/core/theme/app_theme.dart';
+import 'package:hungry/features/checkout/view/checkout_view.dart';
 import 'package:hungry/shared/custom_button.dart';
 
-class ProductBottomBar extends StatelessWidget {
-  final double totalPrice;
-  final VoidCallback onAddToCart;
-  final String buttonTitle;
+class CartBottomBar extends StatelessWidget {
+  final String totalPrice;
+  final VoidCallback? onCheckout;
 
-  const ProductBottomBar({
+  const CartBottomBar({
     super.key,
     required this.totalPrice,
-    required this.onAddToCart,
-    this.buttonTitle = 'Add to Cart',
+    this.onCheckout,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: AppSizes.spacingHeight110,
-      padding: EdgeInsets.symmetric(
-        horizontal: AppSizes.spacingWidth16,
-        vertical: AppSizes.spacingHeight16,
+      height: AppSizes.spacingHeight180,
+      padding: EdgeInsets.only(
+        left: AppSizes.spacingWidth16,
+        right: AppSizes.spacingWidth16,
+        bottom: AppSizes.spacingHeight100,
       ),
       decoration: BoxDecoration(
         color: context.scaffoldBackgroundColor,
@@ -54,28 +54,28 @@ class ProductBottomBar extends StatelessWidget {
                     ),
               ),
               Gap(AppSizes.spacingHeight8),
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 200),
-                transitionBuilder: (child, animation) => FadeTransition(
-                  opacity: animation,
-                  child: child,
-                ),
-                child: Text(
-                  '\$${totalPrice.toStringAsFixed(2)}',
-                  key: ValueKey<double>(totalPrice),
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: AppSizes.fontSize24,
-                        color: context.colorScheme.primary,
-                      ),
-                ),
+              Text(
+                totalPrice,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: AppSizes.fontSize24,
+                      color: context.colorScheme.primary,
+                    ),
               ),
             ],
           ),
           const Spacer(),
           CustomButton(
-            title: buttonTitle,
-            onTap: onAddToCart,
+            title: 'Checkout',
+            onTap: onCheckout ??
+                () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CheckoutView(),
+                    ),
+                  );
+                },
             height: AppSizes.spacingHeight60,
           ),
         ],

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
 import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 
 class SpicySlider extends StatelessWidget {
   const SpicySlider({
@@ -21,9 +21,9 @@ class SpicySlider extends StatelessWidget {
     return 'Hot & Spicy 💥🔥';
   }
 
-  Color _getSpicyColor(double value) {
+  Color _getSpicyColor(BuildContext context, double value) {
     if (value <= 0.25) return Colors.blueAccent;
-    if (value <= 0.50) return AppColors.primary;
+    if (value <= 0.50) return context.colorScheme.primary;
     if (value <= 0.75) return Colors.deepOrange;
     return AppColors.error;
   }
@@ -31,7 +31,7 @@ class SpicySlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final spicyText = _getSpicyLevelText(value);
-    final spicyColor = _getSpicyColor(value);
+    final spicyColor = _getSpicyColor(context, value);
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,7 +43,7 @@ class SpicySlider extends StatelessWidget {
             tag: 'product_image_burger',
             child: Image.asset(
               'assets/images/burger_details.png',
-              height: 200.h,
+              height: AppSizes.spacingHeight200,
               fit: BoxFit.contain,
             ),
           ),
@@ -63,7 +63,7 @@ class SpicySlider extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       fontSize: AppSizes.fontSize16,
-                      color: AppColors.textPrimary,
+                      color: context.textPrimaryColor,
                       height: 1.2,
                     ),
               ),
@@ -72,7 +72,7 @@ class SpicySlider extends StatelessWidget {
               // Dynamic Spicy Label Badge
               Container(
                 padding: EdgeInsets.symmetric(
-                  horizontal: 10.w,
+                  horizontal: AppSizes.spacingWidth10,
                   vertical: AppSizes.spacingHeight4,
                 ),
                 decoration: BoxDecoration(
@@ -94,13 +94,13 @@ class SpicySlider extends StatelessWidget {
               // Slider Widget
               SliderTheme(
                 data: SliderTheme.of(context).copyWith(
-                  trackHeight: 6.h,
+                  trackHeight: AppSizes.spacingHeight6,
                   activeTrackColor: spicyColor,
-                  inactiveTrackColor: AppColors.border,
+                  inactiveTrackColor: context.borderColor,
                   thumbColor: spicyColor,
                   overlayColor: spicyColor.withValues(alpha: 0.2),
                   thumbShape: RoundSliderThumbShape(
-                    enabledThumbRadius: 10.r,
+                    enabledThumbRadius: AppSizes.borderRadius10,
                   ),
                 ),
                 child: Slider(
@@ -119,7 +119,7 @@ class SpicySlider extends StatelessWidget {
                     '🥶 Mild',
                     style: TextStyle(
                       fontSize: AppSizes.fontSize12,
-                      color: AppColors.textSecondary,
+                      color: context.textSecondaryColor,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -127,7 +127,7 @@ class SpicySlider extends StatelessWidget {
                     'Hot 💥',
                     style: TextStyle(
                       fontSize: AppSizes.fontSize12,
-                      color: AppColors.textSecondary,
+                      color: context.textSecondaryColor,
                       fontWeight: FontWeight.w500,
                     ),
                   ),

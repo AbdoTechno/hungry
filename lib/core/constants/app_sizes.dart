@@ -4,13 +4,18 @@ class AppSizes {
   AppSizes._();
 
   // ===== Font Sizes =====
+  static double get fontSize48 => 48.sp;
   static double get fontSize40 => 40.sp;
   static double get fontSize24 => 24.sp;
+  static double get fontSize22 => 22.sp;
   static double get fontSize20 => 20.sp;
   static double get fontSize18 => 18.sp;
   static double get fontSize16 => 16.sp;
   static double get fontSize14 => 14.sp;
+  static double get fontSize13 => 13.sp;
   static double get fontSize12 => 12.sp;
+  static double get fontSize10 => 10.sp;
+  static double get fontSize9 => 9.sp;
 
   // ===== Spacing Width =====
   static double get spacingWidth438 => 438.w;
@@ -20,8 +25,10 @@ class AppSizes {
   static double get spacingWidth200 => 200.w;
   static double get spacingWidth180 => 180.w;
   static double get spacingWidth150 => 150.w;
+  static double get spacingWidth140 => 140.w;
   static double get spacingWidth120 => 120.w;
   static double get spacingWidth110 => 110.w;
+  static double get spacingWidth105 => 105.w;
   static double get spacingWidth100 => 100.w;
   static double get spacingWidth80 => 80.w;
   static double get spacingWidth60 => 60.w;
@@ -33,6 +40,7 @@ class AppSizes {
   static double get spacingWidth20 => 20.w;
   static double get spacingWidth16 => 16.w;
   static double get spacingWidth12 => 12.w;
+  static double get spacingWidth10 => 10.w;
   static double get spacingWidth8 => 8.w;
   static double get spacingWidth4 => 4.w;
   static double get spacingWidth3 => 3.w;
@@ -44,6 +52,7 @@ class AppSizes {
   static double get spacingHeight250 => 250.h;
   static double get spacingHeight220 => 220.h;
   static double get spacingHeight200 => 200.h;
+  static double get spacingHeight185 => 185.h;
   static double get spacingHeight180 => 180.h;
   static double get spacingHeight170 => 170.h;
   static double get spacingHeight150 => 150.h;
@@ -56,12 +65,16 @@ class AppSizes {
   static double get spacingHeight100 => 100.h;
   static double get spacingHeight90 => 90.h;
   static double get spacingHeight80 => 80.h;
+  static double get spacingHeight75 => 75.h;
+  static double get spacingHeight72 => 72.h;
   static double get spacingHeight70 => 70.h;
   static double get spacingHeight60 => 60.h;
-  static double get spacingHeight50 => 50.h;
   static double get spacingHeight52 => 52.h;
+  static double get spacingHeight50 => 50.h;
   static double get spacingHeight45 => 45.h;
+  static double get spacingHeight42 => 42.h;
   static double get spacingHeight40 => 40.h;
+  static double get spacingHeight36 => 36.h;
   static double get spacingHeight32 => 32.h;
   static double get spacingHeight30 => 30.h;
   static double get spacingHeight24 => 24.h;
@@ -70,6 +83,7 @@ class AppSizes {
   static double get spacingHeight12 => 12.h;
   static double get spacingHeight10 => 10.h;
   static double get spacingHeight8 => 8.h;
+  static double get spacingHeight6 => 6.h;
   static double get spacingHeight4 => 4.h;
   static double get spacingHeight2 => 2.h;
 
@@ -77,20 +91,26 @@ class AppSizes {
   static double get borderRadius100 => 100.r;
   static double get borderRadius65 => 65.r;
   static double get borderRadius30 => 30.r;
+  static double get borderRadius26 => 26.r;
   static double get borderRadius24 => 24.r;
   static double get borderRadius20 => 20.r;
   static double get borderRadius16 => 16.r;
   static double get borderRadius12 => 12.r;
   static double get borderRadius10 => 10.r;
   static double get borderRadius8 => 8.r;
+  static double get borderRadius6 => 6.r;
   static double get borderRadius4 => 4.r;
   static double get borderRadius2 => 2.r;
   static double get borderRadius0 => 0.r;
 
   // ===== Icon Sizes =====
+  static double get iconSize60 => 60.r;
+  static double get iconSize34 => 34.r;
+  static double get iconSize30 => 30.r;
   static double get iconSize25 => 25.r;
   static double get iconSize24 => 24.r;
   static double get iconSize20 => 20.r;
+  static double get iconSize18 => 18.r;
   static double get iconSize16 => 16.r;
   static double get iconSize12 => 12.r;
   static double get iconSize8 => 8.r;
@@ -101,7 +121,10 @@ class AppSizes {
   static double get borderWidth2 => 2.r;
 
   // ===== General Sizes =====
+  static double get size60 => 60.r;
   static double get size40 => 40.r;
+  static double get size32 => 32.r;
+  static double get size24 => 24.r;
   static double get size20 => 20.r;
   static double get size10 => 10.r;
 

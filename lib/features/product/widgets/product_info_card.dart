@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
-import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 
 class ProductInfoCard extends StatelessWidget {
   final String title;
@@ -25,11 +25,13 @@ class ProductInfoCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(AppSizes.spacingWidth12),
       decoration: BoxDecoration(
-        color: AppColors.cardBackground,
+        color: context.cardBackgroundColor,
         borderRadius: BorderRadius.circular(AppSizes.borderRadius16),
         boxShadow: [
           BoxShadow(
-            color: AppColors.shadow,
+            color: context.isDarkMode
+                ? Colors.black.withValues(alpha: 0.3)
+                : Colors.black.withValues(alpha: 0.06),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -38,7 +40,6 @@ class ProductInfoCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Title and Subtitle / Base Price
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -47,24 +48,24 @@ class ProductInfoCard extends StatelessWidget {
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                       fontSize: AppSizes.fontSize16,
-                      color: AppColors.textPrimary,
+                      color: context.textPrimaryColor,
                     ),
               ),
               Gap(AppSizes.spacingHeight4),
               Text(
                 subtitle,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppColors.textSecondary,
+                      color: context.textSecondaryColor,
                       fontSize: AppSizes.fontSize12,
                     ),
               ),
             ],
           ),
 
-          // Quantity Counter (+ / -)
+          // Quantity Counter
           Container(
             decoration: BoxDecoration(
-              color: AppColors.inputFill,
+              color: context.inputFillColor,
               borderRadius: BorderRadius.circular(AppSizes.borderRadius30),
             ),
             child: Row(
@@ -77,8 +78,8 @@ class ProductInfoCard extends StatelessWidget {
                     Icons.remove,
                     size: AppSizes.iconSize16,
                     color: quantity > 1
-                        ? AppColors.textPrimary
-                        : AppColors.grey,
+                        ? context.textPrimaryColor
+                        : context.textSecondaryColor,
                   ),
                 ),
                 Padding(
@@ -90,6 +91,7 @@ class ProductInfoCard extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: AppSizes.fontSize14,
+                          color: context.textPrimaryColor,
                         ),
                   ),
                 ),
@@ -100,7 +102,7 @@ class ProductInfoCard extends StatelessWidget {
                   icon: Icon(
                     Icons.add,
                     size: AppSizes.iconSize16,
-                    color: AppColors.primary,
+                    color: context.colorScheme.primary,
                   ),
                 ),
               ],

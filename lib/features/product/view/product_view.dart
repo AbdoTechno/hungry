@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
-import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 import 'package:hungry/features/product/widgets/product_bottom_bar.dart';
 import 'package:hungry/features/product/widgets/product_info_card.dart';
 import 'package:hungry/features/product/widgets/product_options_list.dart';
@@ -105,17 +105,17 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
     final totalPrice = calculateTotalPrice;
 
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: context.scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
         scrolledUnderElevation: 0,
-        backgroundColor: AppColors.background,
+        backgroundColor: context.scaffoldBackgroundColor,
         surfaceTintColor: Colors.transparent,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: Icon(
             Icons.arrow_back_ios_new,
-            color: AppColors.textPrimary,
+            color: context.textPrimaryColor,
             size: AppSizes.iconSize20,
           ),
         ),
@@ -124,7 +124,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
                 fontSize: AppSizes.fontSize18,
-                color: AppColors.textPrimary,
+                color: context.textPrimaryColor,
               ),
         ),
         centerTitle: true,
@@ -133,7 +133,9 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
             onPressed: () => setState(() => isFavorite = !isFavorite),
             icon: Icon(
               isFavorite ? Icons.favorite : Icons.favorite_border,
-              color: isFavorite ? AppColors.error : AppColors.textPrimary,
+              color: isFavorite
+                  ? context.colorScheme.error
+                  : context.textPrimaryColor,
               size: AppSizes.iconSize24,
             ),
           ),
@@ -165,7 +167,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
               ProductSectionHeader(
                 title: 'Toppings',
                 selectedCount: selectedToppings.length,
-                badgeColor: AppColors.primary,
+                badgeColor: context.colorScheme.primary,
               ),
               Gap(AppSizes.spacingHeight12),
               ProductOptionsList(
@@ -177,14 +179,14 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
               ProductSectionHeader(
                 title: 'Side Options',
                 selectedCount: selectedSides.length,
-                badgeColor: AppColors.primaryLight,
+                badgeColor: context.colorScheme.primary,
               ),
               Gap(AppSizes.spacingHeight12),
               ProductOptionsList(
                 items: sideOptionsList,
                 selectedIds: selectedSides,
                 onToggle: _toggleSide,
-                buttonColor: AppColors.primaryLight,
+                buttonColor: context.colorScheme.primary,
               ),
               Gap(AppSizes.spacingHeight24),
             ],
@@ -199,7 +201,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
               content: Text(
                 'Added to cart! Total: \$${totalPrice.toStringAsFixed(2)}',
               ),
-              backgroundColor: AppColors.primary,
+              backgroundColor: context.colorScheme.primary,
               behavior: SnackBarBehavior.floating,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(AppSizes.borderRadius12),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/constants/app_sizes.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 
 class SuccessDialog extends StatelessWidget {
   const SuccessDialog({
@@ -12,85 +13,71 @@ class SuccessDialog extends StatelessWidget {
       backgroundColor: Colors.transparent,
       elevation: 0,
       child: Container(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 24,
-          vertical: 32,
+        padding: EdgeInsets.symmetric(
+          horizontal: AppSizes.spacingWidth24,
+          vertical: AppSizes.spacingHeight32,
         ),
         decoration: BoxDecoration(
-          color: AppColors.background,
-          borderRadius:
-              BorderRadius.circular(28),
+          color: context.cardBackgroundColor,
+          borderRadius: BorderRadius.circular(AppSizes.borderRadius24),
+          boxShadow: [
+            BoxShadow(
+              color: context.isDarkMode
+                  ? Colors.black.withValues(alpha: 0.4)
+                  : Colors.black.withValues(alpha: 0.1),
+              blurRadius: 20,
+              offset: const Offset(0, 8),
+            ),
+          ],
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
               'assets/images/success.png',
-              width: 100,
-              height: 100,
+              width: AppSizes.spacingWidth100,
+              height: AppSizes.spacingHeight100,
             ),
-    
-            const SizedBox(height: 24),
-    
+            SizedBox(height: AppSizes.spacingHeight24),
             Text(
               "Success !",
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineMedium
-                  ?.copyWith(
-                    fontWeight:
-                        FontWeight.bold,
-                    color:
-                        AppColors.primary,
+              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: context.colorScheme.primary,
                   ),
             ),
-    
-            const SizedBox(height: 16),
-    
+            SizedBox(height: AppSizes.spacingHeight16),
             Text(
-              "Your payment was successful.\n"
-              "A receipt for this purchase has\n"
-              "been sent to your email.",
+              "Your payment was successful.\nA receipt for this purchase has\nbeen sent to your email.",
               textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(
-                    color: Colors
-                        .grey
-                        .shade500,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: context.textSecondaryColor,
                     height: 1.6,
                   ),
             ),
-    
-            const SizedBox(height: 36),
-    
+            SizedBox(height: AppSizes.spacingHeight32),
             SizedBox(
               width: double.infinity,
-              height: 56,
+              height: AppSizes.spacingHeight52,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      AppColors.primary,
-                  foregroundColor:
-                      Colors.white,
+                  backgroundColor: context.colorScheme.primary,
+                  foregroundColor: Colors.white,
                   elevation: 0,
                   shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(
-                          18,
-                        ),
+                    borderRadius: BorderRadius.circular(
+                      AppSizes.borderRadius16,
+                    ),
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   "Go Back",
                   style: TextStyle(
-                    fontSize: 20,
-                    fontWeight:
-                        FontWeight.w700,
+                    fontSize: AppSizes.fontSize18,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
-import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 import 'package:hungry/features/auth/widgets/action_buttons.dart';
 import 'package:hungry/features/auth/widgets/payment_card.dart';
 import 'package:hungry/features/auth/widgets/profile_header.dart';
@@ -25,7 +25,7 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: context.scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -38,20 +38,20 @@ class _ProfileViewState extends State<ProfileView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(width: 48),
+                  SizedBox(width: AppSizes.spacingWidth40),
                   Text(
                     'Profile',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.textPrimary,
-                      fontSize: 20,
-                    ),
+                          fontWeight: FontWeight.bold,
+                          color: context.textPrimaryColor,
+                          fontSize: AppSizes.fontSize20,
+                        ),
                   ),
                   IconButton(
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.settings_sharp,
-                      color: AppColors.textPrimary,
-                      size: 24,
+                      color: context.textPrimaryColor,
+                      size: AppSizes.iconSize24,
                     ),
                     onPressed: () {
                       ScaffoldMessenger.of(context).showSnackBar(

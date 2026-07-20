@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hungry/core/theme/app_theme.dart';
 import 'package:hungry/splash.dart';
-// import 'package:hungry/splash.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
@@ -22,9 +21,11 @@ class HungryApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: ThemeMode.system,
           debugShowCheckedModeBanner: false,
           title: 'Hungry',
-          home: SplashScreen(),
+          home: const SplashScreen(),
         );
       },
     );

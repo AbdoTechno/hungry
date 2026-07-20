@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
-import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 
 class HomeSearchBar extends StatelessWidget {
   const HomeSearchBar({super.key});
@@ -9,9 +9,12 @@ class HomeSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SearchBar(
-      elevation: const WidgetStatePropertyAll(3),
+      backgroundColor: WidgetStatePropertyAll(context.cardBackgroundColor),
+      elevation: const WidgetStatePropertyAll(2),
       side: WidgetStatePropertyAll(
-        BorderSide(color: AppColors.primary.withAlpha(80)),
+        BorderSide(
+          color: context.colorScheme.primary.withValues(alpha: 0.3),
+        ),
       ),
       shape: WidgetStatePropertyAll(
         RoundedRectangleBorder(
@@ -23,12 +26,16 @@ class HomeSearchBar extends StatelessWidget {
       hintText: 'Search your favourite food...',
       hintStyle: WidgetStatePropertyAll(
         TextStyle(
-          color: AppColors.primaryDark.withAlpha(120),
-          fontSize: AppSizes.fontSize16,
+          color: context.textSecondaryColor,
+          fontSize: AppSizes.fontSize14,
           fontWeight: FontWeight.w400,
         ),
       ),
-      leading: const Icon(CupertinoIcons.search),
+      leading: Icon(
+        CupertinoIcons.search,
+        color: context.colorScheme.primary,
+        size: AppSizes.iconSize20,
+      ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
 import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 import 'package:hungry/features/checkout/widgets/order_details_widget.dart';
 import 'package:hungry/features/checkout/widgets/success_dialog.dart';
 import 'package:hungry/shared/custom_button.dart';
@@ -16,47 +17,58 @@ class CheckoutView extends StatefulWidget {
 
 class _CheckoutViewState extends State<CheckoutView> {
   String selectedMethod = "Cash";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: context.scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text('Checkout'),
+        title: Text(
+          'Checkout',
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                color: context.textPrimaryColor,
+                fontWeight: FontWeight.bold,
+              ),
+        ),
         centerTitle: true,
+        backgroundColor: context.scaffoldBackgroundColor,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: Icon(
             CupertinoIcons.back,
-            color: Colors.black,
-            size: 30,
+            color: context.textPrimaryColor,
+            size: AppSizes.iconSize24,
           ),
         ),
       ),
-
       body: Padding(
         padding: EdgeInsets.all(AppSizes.spacingWidth16),
         child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Order Summary',
-                style: Theme.of(
-                  context,
-                ).textTheme.titleLarge,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: context.textPrimaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
               Gap(AppSizes.spacingHeight16),
-              OrderDetailsWidget(
+              const OrderDetailsWidget(
                 order: '23',
                 taxes: '34',
                 deliveryFee: '45',
                 total: '456',
               ),
-              Gap(AppSizes.spacingHeight80),
+              Gap(AppSizes.spacingHeight32),
               Text(
                 'Payment Method',
-                style: Theme.of(
-                  context,
-                ).textTheme.titleLarge,
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: context.textPrimaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
               Gap(AppSizes.spacingHeight16),
               ListTile(
@@ -68,7 +80,7 @@ class _CheckoutViewState extends State<CheckoutView> {
                 contentPadding: EdgeInsets.all(
                   AppSizes.spacingWidth16,
                 ),
-                tileColor: AppColors.tileColor,
+                tileColor: context.tileBackgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     AppSizes.borderRadius16,
@@ -76,11 +88,9 @@ class _CheckoutViewState extends State<CheckoutView> {
                 ),
                 title: Text(
                   'Cash on Delivery',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.copyWith(
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.textWhite,
+                        fontWeight: FontWeight.w600,
                       ),
                 ),
                 leading: Image.asset(
@@ -88,9 +98,11 @@ class _CheckoutViewState extends State<CheckoutView> {
                   height: AppSizes.spacingHeight40,
                 ),
                 trailing: Radio<String>(
-                  activeColor: AppColors.background,
+                  activeColor: AppColors.textWhite,
                   value: "Cash",
+                  // ignore: deprecated_member_use
                   groupValue: selectedMethod,
+                  // ignore: deprecated_member_use
                   onChanged: (value) {
                     setState(() {
                       selectedMethod = value!;
@@ -108,28 +120,23 @@ class _CheckoutViewState extends State<CheckoutView> {
                 contentPadding: EdgeInsets.all(
                   AppSizes.spacingWidth16,
                 ),
-                tileColor: AppColors.primaryDark,
+                tileColor: context.colorScheme.primary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     AppSizes.borderRadius16,
                   ),
                 ),
                 title: Text(
-                  'Cash on Delivery',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.copyWith(
+                  'Visa / Mastercard',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppColors.textWhite,
+                        fontWeight: FontWeight.w600,
                       ),
                 ),
                 subtitle: Text(
                   '*** *** 1234',
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleMedium
-                      ?.copyWith(
-                        color: AppColors.textWhite,
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: AppColors.textWhite.withValues(alpha: 0.8),
                       ),
                 ),
                 leading: Image.asset(
@@ -137,9 +144,11 @@ class _CheckoutViewState extends State<CheckoutView> {
                   height: AppSizes.spacingHeight40,
                 ),
                 trailing: Radio<String>(
-                  activeColor: AppColors.background,
+                  activeColor: AppColors.textWhite,
                   value: "Visa",
+                  // ignore: deprecated_member_use
                   groupValue: selectedMethod,
+                  // ignore: deprecated_member_use
                   onChanged: (value) {
                     setState(() {
                       selectedMethod = value!;
@@ -147,27 +156,28 @@ class _CheckoutViewState extends State<CheckoutView> {
                   },
                 ),
               ),
-              Gap(AppSizes.spacingHeight8),
+              Gap(AppSizes.spacingHeight12),
               Row(
                 children: [
                   Checkbox(
                     checkColor: AppColors.textWhite,
-                    fillColor: MaterialStateProperty.all(
-                      AppColors.error,
+                    fillColor: WidgetStateProperty.all(
+                      context.colorScheme.primary,
                     ),
-
-                    activeColor: AppColors.error,
                     value: true,
                     onChanged: (value) {},
                   ),
-                  Text(
-                    'Save card details for future payments',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.titleSmall?.copyWith(),
+                  Expanded(
+                    child: Text(
+                      'Save card details for future payments',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: context.textSecondaryColor,
+                          ),
+                    ),
                   ),
                 ],
               ),
+              Gap(AppSizes.spacingHeight120),
             ],
           ),
         ),
@@ -176,24 +186,17 @@ class _CheckoutViewState extends State<CheckoutView> {
         height: AppSizes.spacingHeight120,
         padding: EdgeInsets.all(AppSizes.spacingWidth16),
         decoration: BoxDecoration(
-          color: AppColors.buttonSecondary,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(
-              AppSizes.borderRadius24,
-            ),
-            topRight: Radius.circular(
-              AppSizes.borderRadius16,
-            ),
+          color: context.scaffoldBackgroundColor,
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(AppSizes.borderRadius24),
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: .08),
-              blurRadius: 10,
-            ),
-            BoxShadow(
-              color: Colors.black.withValues(alpha: .08),
-              blurRadius: 10,
-              offset: const Offset(0, 10),
+              color: context.isDarkMode
+                  ? Colors.black.withValues(alpha: 0.4)
+                  : Colors.black.withValues(alpha: 0.08),
+              blurRadius: 15,
+              offset: const Offset(0, -5),
             ),
           ],
         ),
@@ -206,20 +209,23 @@ class _CheckoutViewState extends State<CheckoutView> {
               children: [
                 Text(
                   'Total',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: context.textSecondaryColor,
+                        fontSize: AppSizes.fontSize12,
+                      ),
                 ),
-                Gap(AppSizes.spacingHeight8),
+                Gap(AppSizes.spacingHeight4),
                 Text(
                   '\$ 456.00',
-                  style: Theme.of(
-                    context,
-                  ).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        color: context.colorScheme.primary,
+                        fontWeight: FontWeight.bold,
+                        fontSize: AppSizes.fontSize24,
+                      ),
                 ),
               ],
             ),
-            Spacer(),
+            const Spacer(),
             CustomButton(
               title: "Pay Now",
               onTap: () {
@@ -227,7 +233,7 @@ class _CheckoutViewState extends State<CheckoutView> {
                   context: context,
                   barrierDismissible: false,
                   builder: (context) {
-                    return SuccessDialog();
+                    return const SuccessDialog();
                   },
                 );
               },

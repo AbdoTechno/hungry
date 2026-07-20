@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
 import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 import 'package:hungry/shared/custom_button.dart';
 
 class OrderHistoryView extends StatelessWidget {
@@ -19,11 +20,9 @@ class OrderHistoryView extends StatelessWidget {
         body: Padding(
           padding: EdgeInsets.all(AppSizes.spacingWidth16),
           child: CustomScrollView(
+            physics: const BouncingScrollPhysics(),
             slivers: [
-              SliverToBoxAdapter(
-                child: Gap(AppSizes.spacingHeight16),
-              ),
-
+              SliverToBoxAdapter(child: Gap(AppSizes.spacingHeight16)),
               SliverList.separated(
                 itemCount: 10,
                 separatorBuilder: (context, index) =>
@@ -31,47 +30,37 @@ class OrderHistoryView extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Card(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(AppSizes.spacingWidth16),
                       child: Column(
                         children: [
                           Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment
-                                    .spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Column(
                                 children: [
                                   Stack(
-                                    alignment:
-                                        Alignment.center,
+                                    alignment: Alignment.center,
                                     children: [
                                       Positioned(
-                                        bottom: 12,
+                                        bottom: AppSizes.spacingHeight12,
                                         child: SizedBox(
                                           width:
-                                              AppSizes
-                                                  .spacingWidth110 *
-                                              .85,
+                                              AppSizes.spacingWidth110 * 0.85,
                                           child: Container(
-                                            height: AppSizes
-                                                .spacingHeight4,
+                                            height: AppSizes.spacingHeight4,
                                             decoration: BoxDecoration(
                                               boxShadow: [
                                                 BoxShadow(
-                                                  color: Colors
-                                                      .black
-                                                      .withValues(
-                                                        alpha: .7,
-                                                      ),
+                                                  color: Colors.black
+                                                      .withValues(alpha: 0.25),
                                                   blurRadius:
-                                                      8,
-                                                  spreadRadius:
-                                                      1,
+                                                      AppSizes.spacingWidth8,
+                                                  spreadRadius: 1,
                                                 ),
                                               ],
                                               borderRadius:
                                                   BorderRadius.circular(
-                                                    24,
+                                                    AppSizes.borderRadius24,
                                                   ),
                                             ),
                                           ),
@@ -79,10 +68,8 @@ class OrderHistoryView extends StatelessWidget {
                                       ),
                                       Image.asset(
                                         "assets/images/food2.png",
-                                        height: AppSizes
-                                            .spacingHeight100,
-                                        width: AppSizes
-                                            .spacingWidth110,
+                                        height: AppSizes.spacingHeight100,
+                                        width: AppSizes.spacingWidth110,
                                         fit: BoxFit.cover,
                                       ),
                                     ],
@@ -90,9 +77,7 @@ class OrderHistoryView extends StatelessWidget {
                                 ],
                               ),
                               Column(
-                                crossAxisAlignment:
-                                    CrossAxisAlignment
-                                        .start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     "Order Name: Hamburger",
@@ -100,28 +85,29 @@ class OrderHistoryView extends StatelessWidget {
                                         .textTheme
                                         .bodyMedium
                                         ?.copyWith(
-                                          color: AppColors
-                                              .textSecondary,
+                                          color: context.textPrimaryColor,
+                                          fontWeight: FontWeight.w600,
                                         ),
                                   ),
+                                  Gap(AppSizes.spacingHeight4),
                                   Text(
                                     "Quantity: 1",
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
                                         ?.copyWith(
-                                          color: AppColors
-                                              .textSecondary,
+                                          color: AppColors.textSecondary,
                                         ),
                                   ),
+                                  Gap(AppSizes.spacingHeight4),
                                   Text(
                                     "Price: \$12.99",
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
                                         ?.copyWith(
-                                          color: AppColors
-                                              .textSecondary,
+                                          color: AppColors.primary,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                   ),
                                 ],
@@ -140,10 +126,7 @@ class OrderHistoryView extends StatelessWidget {
                   );
                 },
               ),
-
-              SliverToBoxAdapter(
-                child: Gap(AppSizes.spacingHeight60),
-              ),
+              SliverToBoxAdapter(child: Gap(AppSizes.spacingHeight60)),
             ],
           ),
         ),

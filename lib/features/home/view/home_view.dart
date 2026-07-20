@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
-import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 import 'package:hungry/features/home/widgets/food_card.dart';
 import 'package:hungry/features/home/widgets/home_categories.dart';
 import 'package:hungry/features/home/widgets/home_header.dart';
@@ -18,7 +17,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  // Dummy data – replace with your actual list
   final List<Map<String, dynamic>> foods = List.generate(
     30,
     (index) => {
@@ -34,12 +32,11 @@ class _HomeViewState extends State<HomeView> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        backgroundColor: AppColors.background,
+        backgroundColor: context.scaffoldBackgroundColor,
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: RefreshIndicator(
-            onRefresh: () =>
-                Future.delayed(const Duration(seconds: 1)),
+            onRefresh: () => Future.delayed(const Duration(seconds: 1)),
             child: CustomScrollView(
               physics: const BouncingScrollPhysics(),
               slivers: [
@@ -50,14 +47,13 @@ class _HomeViewState extends State<HomeView> {
                       vertical: AppSizes.spacingHeight16,
                     ),
                     child: Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        HomeHeader(),
+                        const HomeHeader(),
                         Gap(AppSizes.spacingHeight16),
-                        HomeSearchBar(),
+                        const HomeSearchBar(),
                         Gap(AppSizes.spacingHeight24),
-                        HomeCategories(),
+                        const HomeCategories(),
                         Gap(AppSizes.spacingHeight16),
                       ],
                     ),
@@ -68,30 +64,24 @@ class _HomeViewState extends State<HomeView> {
                     AppSizes.spacingWidth20,
                     0,
                     AppSizes.spacingWidth20,
-                    110.h,
+                    AppSizes.spacingHeight110,
                   ),
                   sliver: SliverGrid.builder(
                     itemCount: foods.length,
-                    gridDelegate:
-                        SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing:
-                              AppSizes.spacingHeight8,
-                          crossAxisSpacing:
-                              AppSizes.spacingWidth8,
-                          childAspectRatio: 0.80,
-                        ),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: AppSizes.spacingHeight8,
+                      crossAxisSpacing: AppSizes.spacingWidth8,
+                      childAspectRatio: 0.80,
+                    ),
                     itemBuilder: (context, index) {
                       final food = foods[index];
                       return AnimationConfiguration.staggeredGrid(
                         position: index,
-                        duration: const Duration(
-                          milliseconds: 800,
-                        ),
+                        duration: const Duration(milliseconds: 800),
                         columnCount: 2,
                         child: SlideAnimation(
-                          verticalOffset:
-                              50.0, // slide up from 50px below
+                          verticalOffset: 50.0,
                           child: FadeInAnimation(
                             child: GestureDetector(
                               onTap: () {
@@ -103,16 +93,10 @@ class _HomeViewState extends State<HomeView> {
                                 );
                               },
                               child: FoodCard(
-                                image:
-                                    food['image'] as String,
-                                title:
-                                    food['title'] as String,
-                                restaurant:
-                                    food['restaurant']
-                                        as String,
-                                rating:
-                                    food['rating']
-                                        as double,
+                                image: food['image'] as String,
+                                title: food['title'] as String,
+                                restaurant: food['restaurant'] as String,
+                                rating: food['rating'] as double,
                               ),
                             ),
                           ),

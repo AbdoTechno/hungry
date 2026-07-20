@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
-import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 
 class ProfileInfoCard extends StatelessWidget {
   const ProfileInfoCard({
@@ -27,7 +27,7 @@ class ProfileInfoCard extends StatelessWidget {
         return Opacity(
           opacity: opacity,
           child: Transform.translate(
-            offset: Offset(0, 20 * (1 - opacity)),
+            offset: Offset(0, AppSizes.spacingHeight20 * (1 - opacity)),
             child: child,
           ),
         );
@@ -37,21 +37,25 @@ class ProfileInfoCard extends StatelessWidget {
         title: 'Personal Information',
         children: [
           _buildInfoTile(
+            context,
             Icons.person_outline,
             'Name',
             name,
           ),
           _buildInfoTile(
+            context,
             Icons.email_outlined,
             'Email',
             email,
           ),
           _buildInfoTile(
+            context,
             Icons.location_on_outlined,
             'Delivery address',
             address,
           ),
           _buildInfoTile(
+            context,
             Icons.lock_outline,
             'Password',
             password,
@@ -72,11 +76,13 @@ class ProfileInfoCard extends StatelessWidget {
         vertical: AppSizes.spacingHeight20,
       ),
       decoration: BoxDecoration(
-        color: AppColors.cardBackground,
-        borderRadius: BorderRadius.circular(20),
+        color: context.cardBackgroundColor,
+        borderRadius: BorderRadius.circular(AppSizes.borderRadius20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
+            color: context.isDarkMode
+                ? Colors.black.withValues(alpha: 0.3)
+                : Colors.black.withValues(alpha: 0.05),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -88,20 +94,20 @@ class ProfileInfoCard extends StatelessWidget {
           Row(
             children: [
               Container(
-                width: 4,
-                height: 18,
+                width: AppSizes.spacingWidth4,
+                height: AppSizes.spacingHeight180 * 0.1,
                 decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.circular(2),
+                  color: context.colorScheme.primary,
+                  borderRadius: BorderRadius.circular(AppSizes.borderRadius2),
                 ),
               ),
-              const Gap(8),
+              Gap(AppSizes.spacingWidth8),
               Text(
                 title,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
-                      color: AppColors.textPrimary,
-                      fontSize: 16,
+                      color: context.textPrimaryColor,
+                      fontSize: AppSizes.fontSize16,
                     ),
               ),
             ],
@@ -114,39 +120,38 @@ class ProfileInfoCard extends StatelessWidget {
   }
 
   Widget _buildInfoTile(
+    BuildContext context,
     IconData icon,
     String label,
     String value,
   ) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(12),
+      margin: EdgeInsets.only(bottom: AppSizes.spacingHeight12),
+      padding: EdgeInsets.all(AppSizes.spacingWidth12),
       decoration: BoxDecoration(
-        color: Colors.grey.shade50,
-        borderRadius: BorderRadius.circular(14),
+        color: context.inputFillColor,
+        borderRadius: BorderRadius.circular(AppSizes.borderRadius16),
         border: Border.all(
-          color: Colors.grey.shade100,
+          color: context.borderColor,
           width: 1,
         ),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Left Accent Icon Circle
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(AppSizes.spacingWidth10),
             decoration: BoxDecoration(
-              color: AppColors.primary.withValues(alpha: 0.08),
+              color: context.colorScheme.primary.withValues(alpha: 0.08),
               shape: BoxShape.circle,
             ),
             child: Icon(
               icon,
-              size: 20,
-              color: AppColors.primary,
+              size: AppSizes.iconSize20,
+              color: context.colorScheme.primary,
             ),
           ),
-          const Gap(14),
-          // Middle Label & Value Text
+          Gap(AppSizes.spacingWidth12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,32 +159,31 @@ class ProfileInfoCard extends StatelessWidget {
               children: [
                 Text(
                   label,
-                  style: const TextStyle(
-                    fontSize: 11,
-                    color: AppColors.textSecondary,
+                  style: TextStyle(
+                    fontSize: AppSizes.fontSize12,
+                    color: context.textSecondaryColor,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.2,
                   ),
                 ),
-                const Gap(3),
+                Gap(AppSizes.spacingHeight2),
                 Text(
                   value,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 14,
+                  style: TextStyle(
+                    fontSize: AppSizes.fontSize14,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.textPrimary,
+                    color: context.textPrimaryColor,
                   ),
                 ),
               ],
             ),
           ),
-          // Right Chevron Indicator
           Icon(
             Icons.chevron_right_rounded,
-            color: Colors.grey.shade400,
-            size: 20,
+            color: context.textSecondaryColor.withValues(alpha: 0.5),
+            size: AppSizes.iconSize20,
           ),
         ],
       ),

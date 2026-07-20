@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
 import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({super.key, required this.userName});
@@ -18,7 +19,7 @@ class ProfileHeader extends StatelessWidget {
         return Opacity(
           opacity: opacity,
           child: Transform.translate(
-            offset: Offset(0, 20 * (1 - opacity)),
+            offset: Offset(0, AppSizes.spacingHeight20 * (1 - opacity)),
             child: child,
           ),
         );
@@ -31,24 +32,17 @@ class ProfileHeader extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: const LinearGradient(
-                    colors: [AppColors.primary, Color(0xFF0F6327)],
+                    colors: [AppColors.primary, AppColors.primaryGradientEnd],
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.primary.withValues(alpha: 0.25),
-                      blurRadius: 20,
-                      offset: const Offset(0, 8),
-                    ),
-                  ],
                 ),
                 child: CircleAvatar(
-                  radius: 55,
+                  radius: AppSizes.spacingWidth55,
                   backgroundColor: Colors.transparent,
                   child: Text(
                     userName.isNotEmpty ? userName[0].toUpperCase() : 'U',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 48,
+                    style: TextStyle(
+                      color: AppColors.textWhite,
+                      fontSize: AppSizes.fontSize48,
                       fontWeight: FontWeight.bold,
                       letterSpacing: 0,
                     ),
@@ -57,27 +51,30 @@ class ProfileHeader extends StatelessWidget {
               ),
               Positioned(
                 bottom: 0,
-                right: 4,
+                right: AppSizes.spacingWidth4,
                 child: Container(
-                  height: 34,
-                  width: 34,
+                  height: AppSizes.iconSize34,
+                  width: AppSizes.iconSize34,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.cardBackground,
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withValues(alpha: 0.15),
-                        blurRadius: 8,
+                        blurRadius: AppSizes.spacingWidth8,
                         offset: const Offset(0, 3),
                       ),
                     ],
-                    border: Border.all(color: AppColors.primary, width: 1.5),
+                    border: Border.all(
+                      color: AppColors.primary,
+                      width: AppSizes.borderWidth2,
+                    ),
                   ),
-                  child: const Center(
+                  child: Center(
                     child: Icon(
                       Icons.camera_alt,
                       color: AppColors.primary,
-                      size: 16,
+                      size: AppSizes.iconSize16,
                     ),
                   ),
                 ),
@@ -89,22 +86,25 @@ class ProfileHeader extends StatelessWidget {
             userName,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
-              color: AppColors.textPrimary,
+              color: context.textPrimaryColor,
               letterSpacing: 0.5,
             ),
           ),
           Gap(AppSizes.spacingHeight8),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            padding: EdgeInsets.symmetric(
+              horizontal: AppSizes.spacingWidth12,
+              vertical: AppSizes.spacingHeight6,
+            ),
             decoration: BoxDecoration(
               color: AppColors.primary.withValues(alpha: 0.08),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(AppSizes.borderRadius20),
             ),
-            child: const Text(
+            child: Text(
               'Gold Member • Since 2025',
               style: TextStyle(
                 color: AppColors.primary,
-                fontSize: 12,
+                fontSize: AppSizes.fontSize12,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0.3,
               ),

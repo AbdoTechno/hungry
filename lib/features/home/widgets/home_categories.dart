@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
-import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 
 class HomeCategories extends StatefulWidget {
   const HomeCategories({super.key});
@@ -11,7 +11,12 @@ class HomeCategories extends StatefulWidget {
 }
 
 class _HomeCategoriesState extends State<HomeCategories> {
-  final List<String> _categories = const ["All", "Combo", "Sliders", "Classics"];
+  final List<String> _categories = const [
+    "All",
+    "Combo",
+    "Sliders",
+    "Classics"
+  ];
   int _selectedIndex = 0;
 
   @override
@@ -32,7 +37,9 @@ class _HomeCategoriesState extends State<HomeCategories> {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: isSelected ? AppColors.primary : Colors.grey[200],
+                color: isSelected
+                    ? context.colorScheme.primary
+                    : context.inputFillColor,
                 borderRadius: BorderRadius.circular(AppSizes.borderRadius16),
               ),
               child: Padding(
@@ -46,7 +53,9 @@ class _HomeCategoriesState extends State<HomeCategories> {
                     style: TextStyle(
                       fontSize: AppSizes.fontSize14,
                       fontWeight: FontWeight.w600,
-                      color: isSelected ? Colors.white : AppColors.primary,
+                      color: isSelected
+                          ? Colors.white
+                          : context.textPrimaryColor,
                     ),
                   ),
                 ),

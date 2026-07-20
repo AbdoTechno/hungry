@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
-import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 
 class ToppingsCard extends StatelessWidget {
   final String image;
@@ -11,7 +10,7 @@ class ToppingsCard extends StatelessWidget {
   final bool isSelected;
   final VoidCallback? onAdd;
   final VoidCallback? onTap;
-  final Color buttonColor;
+  final Color? buttonColor;
 
   const ToppingsCard({
     super.key,
@@ -21,27 +20,29 @@ class ToppingsCard extends StatelessWidget {
     this.isSelected = false,
     this.onAdd,
     this.onTap,
-    this.buttonColor = AppColors.primary,
+    this.buttonColor,
   });
 
   @override
   Widget build(BuildContext context) {
+    final activeColor = buttonColor ?? context.colorScheme.primary;
+
     return GestureDetector(
       onTap: onTap ?? onAdd,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
-        width: 105.w,
+        width: AppSizes.spacingWidth105,
         decoration: BoxDecoration(
-          color: AppColors.tileColor,
+          color: context.tileBackgroundColor,
           borderRadius: BorderRadius.circular(AppSizes.borderRadius20),
           border: Border.all(
-            color: isSelected ? AppColors.primary : Colors.transparent,
+            color: isSelected ? activeColor : Colors.transparent,
             width: AppSizes.borderWidth2,
           ),
           boxShadow: [
             BoxShadow(
               color: isSelected
-                  ? AppColors.primary.withValues(alpha: 0.25)
+                  ? activeColor.withValues(alpha: 0.25)
                   : Colors.black.withValues(alpha: 0.06),
               blurRadius: 10,
               offset: const Offset(0, 4),
@@ -53,10 +54,10 @@ class ToppingsCard extends StatelessWidget {
           children: [
             // Image Container
             Container(
-              height: 72.h,
+              height: AppSizes.spacingHeight72,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: context.cardBackgroundColor,
                 borderRadius: BorderRadius.circular(AppSizes.borderRadius20),
                 boxShadow: [
                   BoxShadow(
@@ -66,7 +67,7 @@ class ToppingsCard extends StatelessWidget {
                   ),
                 ],
               ),
-              padding: EdgeInsets.all(8.r),
+              padding: EdgeInsets.all(AppSizes.spacingWidth8),
               child: Image.asset(
                 image,
                 fit: BoxFit.contain,
@@ -77,7 +78,7 @@ class ToppingsCard extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: AppSizes.spacingWidth8,
-                vertical: 6.h,
+                vertical: AppSizes.spacingHeight6,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -91,7 +92,7 @@ class ToppingsCard extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: AppColors.textWhite,
+                                color: Colors.white,
                                 fontSize: AppSizes.fontSize12,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -102,10 +103,10 @@ class ToppingsCard extends StatelessWidget {
                         onTap: onAdd ?? onTap,
                         child: AnimatedContainer(
                           duration: const Duration(milliseconds: 200),
-                          width: 24.r,
-                          height: 24.r,
+                          width: AppSizes.iconSize24,
+                          height: AppSizes.iconSize24,
                           decoration: BoxDecoration(
-                            color: isSelected ? AppColors.primary : buttonColor,
+                            color: activeColor,
                             shape: BoxShape.circle,
                           ),
                           child: Icon(
@@ -123,9 +124,9 @@ class ToppingsCard extends StatelessWidget {
                       price!,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: isSelected
-                                ? AppColors.primaryLight
+                                ? context.colorScheme.primary
                                 : Colors.white70,
-                            fontSize: 10.sp,
+                            fontSize: AppSizes.fontSize10,
                             fontWeight: FontWeight.w600,
                           ),
                     ),

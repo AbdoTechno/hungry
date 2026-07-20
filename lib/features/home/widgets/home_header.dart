@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
-import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/theme/app_theme.dart';
 
 class HomeHeader extends StatelessWidget {
   const HomeHeader({super.key});
@@ -26,8 +26,8 @@ class HomeHeader extends StatelessWidget {
                   'assets/images/hungry.svg',
                   width: 140.w,
                   height: 36.h,
-                  colorFilter: const ColorFilter.mode(
-                    AppColors.primary,
+                  colorFilter: ColorFilter.mode(
+                    context.colorScheme.primary,
                     BlendMode.srcIn,
                   ),
                 ),
@@ -35,7 +35,7 @@ class HomeHeader extends StatelessWidget {
                 Text(
                   'Hello, Abdo Techno',
                   style: TextStyle(
-                    color: AppColors.textSecondary,
+                    color: context.textSecondaryColor,
                     fontSize: AppSizes.fontSize16,
                     fontWeight: FontWeight.w500,
                   ),
@@ -43,17 +43,17 @@ class HomeHeader extends StatelessWidget {
               ],
             ),
 
-            // Right Side: Perfectly Circular Profile Avatar
+            // Right Side: Profile Avatar
             Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: AppColors.primary.withAlpha(40),
+                  color: context.colorScheme.primary.withValues(alpha: 0.3),
                   width: 1.5,
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withAlpha(15),
+                    color: Colors.black.withValues(alpha: 0.1),
                     blurRadius: 10,
                     offset: const Offset(0, 4),
                   ),
@@ -63,18 +63,12 @@ class HomeHeader extends StatelessWidget {
                 child: Container(
                   width: 60.r,
                   height: 60.r,
-                  color: AppColors.primary.withAlpha(20),
-                  child: SvgPicture.network(
-                    'https://www.svgrepo.com/show/506667/person.svg',
-                    width: 60.r,
-                    height: 60.r,
-                    fit: BoxFit.cover,
-                    placeholderBuilder: (context) => Center(
-                      child: Icon(
-                        Icons.person_outline,
-                        color: AppColors.primary,
-                        size: 24.r,
-                      ),
+                  color: context.colorScheme.primary.withValues(alpha: 0.15),
+                  child: Center(
+                    child: Icon(
+                      Icons.person,
+                      color: context.colorScheme.primary,
+                      size: AppSizes.iconSize24,
                     ),
                   ),
                 ),
