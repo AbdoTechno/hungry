@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
 import 'package:hungry/core/theme/app_theme.dart';
+import 'package:hungry/features/auth/view/login_view.dart';
 import 'package:hungry/features/auth/widgets/action_buttons.dart';
 import 'package:hungry/features/auth/widgets/payment_card.dart';
 import 'package:hungry/features/auth/widgets/profile_header.dart';
@@ -42,10 +43,10 @@ class _ProfileViewState extends State<ProfileView> {
                   Text(
                     'Profile',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: context.textPrimaryColor,
-                          fontSize: AppSizes.fontSize20,
-                        ),
+                      fontWeight: FontWeight.bold,
+                      color: context.textPrimaryColor,
+                      fontSize: AppSizes.fontSize20,
+                    ),
                   ),
                   IconButton(
                     icon: Icon(
@@ -86,7 +87,10 @@ class _ProfileViewState extends State<ProfileView> {
                   );
                 },
                 onLogout: () {
-                  Navigator.pushReplacementNamed(context, '/login');
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LoginView()),
+                  );
                 },
               ),
               Gap(AppSizes.spacingHeight100),

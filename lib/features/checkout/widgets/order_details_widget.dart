@@ -19,7 +19,7 @@ class OrderDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(AppSizes.spacingWidth16),
-      height: AppSizes.spacingHeight220,
+      height: AppSizes.spacingHeight230,
       width: double.infinity,
       decoration: BoxDecoration(
         color: context.cardBackgroundColor,
@@ -38,9 +38,15 @@ class OrderDetailsWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const CustomSummaryRow(title: 'Order', price: '40.00'),
+          const CustomSummaryRow(
+            title: 'Order',
+            price: '40.00',
+          ),
           Gap(AppSizes.spacingHeight8),
-          const CustomSummaryRow(title: 'Taxes', price: '5.00'),
+          const CustomSummaryRow(
+            title: 'Taxes',
+            price: '5.00',
+          ),
           Gap(AppSizes.spacingHeight8),
           CustomSummaryRow(
             title: 'Delivery Fee',
@@ -48,7 +54,9 @@ class OrderDetailsWidget extends StatelessWidget {
           ),
           Gap(AppSizes.spacingHeight8),
           Divider(
-            color: context.textSecondaryColor.withValues(alpha: .2),
+            color: context.textSecondaryColor.withValues(
+              alpha: .2,
+            ),
             thickness: 1,
             height: 1,
           ),

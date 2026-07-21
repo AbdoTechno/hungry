@@ -50,6 +50,9 @@ class AppSizes {
   static double get spacingHeight300 => 300.h;
   static double get spacingHeight290 => 290.h;
   static double get spacingHeight250 => 250.h;
+  static double get spacingHeight240 => 240.h;
+  static double get spacingHeight230 => 230.h;
+  static double get spacingHeight225 => 225.h;
   static double get spacingHeight220 => 220.h;
   static double get spacingHeight200 => 200.h;
   static double get spacingHeight185 => 185.h;
