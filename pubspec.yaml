@@ -39,6 +39,8 @@ dependencies:
   gap: ^3.0.1
   persistent_bottom_nav_bar_v2: ^6.3.2
   flutter_staggered_animations: ^1.1.1
+  flutter_bloc: ^9.1.1
+  dio: ^5.10.0
 
 dev_dependencies:
   flutter_test:
