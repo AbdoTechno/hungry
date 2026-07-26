@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:hungry/core/network/api_errors.dart';
 import 'package:hungry/core/network/dio_exception.dart';
+import 'package:hungry/core/utils/pref_helpers.dart';
 
 class DioInterceptor extends Interceptor {
   final String? Function() getToken;
@@ -8,16 +10,16 @@ class DioInterceptor extends Interceptor {
   DioInterceptor({required this.getToken});
 
   @override
-  void onRequest(
+  Future<void> onRequest(
     RequestOptions options,
     RequestInterceptorHandler handler,
-  ) {
-    final token = getToken();
+  ) async {
+    final token = await PrefHelpers.getToken();
 
     options.headers.addAll({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      if (token != null) 'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer $token',
     });
 
     if (kDebugMode) {
@@ -58,7 +60,7 @@ class DioInterceptor extends Interceptor {
   ) {
     final message = DioExceptionHandler.handle(err);
 
-    debugPrint(message);
+    debugPrint(ApiErrors(message as String) as String?);
 
     handler.next(err);
   }

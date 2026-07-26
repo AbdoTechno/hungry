@@ -1,35 +1,42 @@
 import 'package:dio/dio.dart';
+import 'package:hungry/core/network/api_errors.dart';
 
 class DioExceptionHandler {
-  static String handle(DioException error) {
+  static ApiErrors handle(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
-        return 'Connection timeout with API server';
+        return ApiErrors(
+          'Connection timeout with API server',
+        );
 
       case DioExceptionType.sendTimeout:
-        return 'Send timeout with API server';
+        return ApiErrors('Send timeout with API server');
 
       case DioExceptionType.receiveTimeout:
-        return 'Receive timeout with API server';
+        return ApiErrors('Receive timeout with API server');
 
       case DioExceptionType.badCertificate:
-        return 'Bad certificate error';
+        return ApiErrors('Bad certificate with API server');
 
       case DioExceptionType.badResponse:
-        return _handleStatusCode(
-          error.response?.statusCode,
+        return ApiErrors(
+          _handleStatusCode(error.response?.statusCode),
         );
 
       case DioExceptionType.cancel:
-        return 'Request was cancelled';
+        return ApiErrors(
+          'Request to API server was cancelled',
+        );
 
       case DioExceptionType.connectionError:
-        return 'No internet connection';
+        return ApiErrors('Connection error occurred');
 
       case DioExceptionType.unknown:
-        return 'Unexpected error occurred';
+        return ApiErrors('Unexpected error occurred');
       case DioExceptionType.transformTimeout:
-        return 'Transform timeout with API server';
+        return ApiErrors(
+          'Transform timeout with API server',
+        );
     }
   }
 
