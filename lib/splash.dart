@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/theme/app_colors.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
+import 'package:hungry/features/auth/view/login_view.dart';
 import 'package:hungry/root.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -147,7 +148,9 @@ class _SplashScreenState extends State<SplashScreen>
 
   void _navigate(BuildContext context) {
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => const Root()),
+      MaterialPageRoute(
+        builder: (context) => const LoginView(),
+      ),
     );
   }
 }

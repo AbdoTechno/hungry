@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hungry/core/network/api_errors.dart';
@@ -5,7 +7,7 @@ import 'package:hungry/core/network/dio_exception.dart';
 import 'package:hungry/core/utils/pref_helpers.dart';
 
 class DioInterceptor extends Interceptor {
-  final String? Function() getToken;
+  final Future<String?> Function() getToken;
 
   DioInterceptor({required this.getToken});
 
@@ -19,11 +21,13 @@ class DioInterceptor extends Interceptor {
     options.headers.addAll({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer $token',
     });
+    if (token != null && token.isNotEmpty) {
+      options.headers['Authorization'] = 'Bearer $token';
+    }
 
     if (kDebugMode) {
-      debugPrint('''
+      log('''
 ╔════════════════ REQUEST ════════════════
 ║ ${options.method} ${options.uri}
 ║ Headers: ${options.headers}
@@ -41,7 +45,7 @@ class DioInterceptor extends Interceptor {
     ResponseInterceptorHandler handler,
   ) {
     if (kDebugMode) {
-      debugPrint('''
+      log('''
 ╔════════════════ RESPONSE ═══════════════
 ║ Status: ${response.statusCode}
 ║ URL: ${response.requestOptions.uri}
@@ -60,7 +64,14 @@ class DioInterceptor extends Interceptor {
   ) {
     final message = DioExceptionHandler.handle(err);
 
-    debugPrint(ApiErrors(message as String) as String?);
+    log(
+      '''
+╔════════════════ ERROR ════════════════
+║ Status: ${err.response?.statusCode}
+║ Message: $message
+╚═════════════════════════════════════════
+''',
+    );
 
     handler.next(err);
   }

@@ -11,7 +11,7 @@ class LoginForm extends StatelessWidget {
     required GlobalKey<FormState> formKey,
     required TextEditingController emailController,
     required TextEditingController passwordController,
-    required VoidCallback onLogin,
+    required Future<void> Function() onLogin,
     required VoidCallback onSignUp,
   })  : _formKey = formKey,
         _emailController = emailController,
@@ -22,7 +22,7 @@ class LoginForm extends StatelessWidget {
   final GlobalKey<FormState> _formKey;
   final TextEditingController _emailController;
   final TextEditingController _passwordController;
-  final VoidCallback _onLogin;
+  final Future<void> Function() _onLogin;
   final VoidCallback _onSignUp;
 
   @override

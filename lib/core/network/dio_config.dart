@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:hungry/core/constants/api_endpoints.dart';
+import 'package:hungry/core/utils/pref_helpers.dart';
 
 import 'dio_interceptor.dart';
 
@@ -26,13 +27,13 @@ class DioConfig {
         validateStatus: (status) {
           return status != null && status < 500;
         },
+        
       ),
     );
     dio.interceptors.add(
       DioInterceptor(
         getToken: () {
-          // return token from secure storage
-          return null;
+          return PrefHelpers.getToken();
         },
       ),
     );
