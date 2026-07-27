@@ -1,58 +1,57 @@
 import 'package:dio/dio.dart';
+import 'api_errors.dart';
 
 class DioExceptionHandler {
-  static String handle(DioException error) {
+  static ApiErrors handle(DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
-        return 'Connection timeout with API server';
+        return const ApiErrors("Connection timeout");
 
       case DioExceptionType.sendTimeout:
-        return 'Send timeout with API server';
+        return const ApiErrors("Send timeout");
 
       case DioExceptionType.receiveTimeout:
-        return 'Receive timeout with API server';
-
-      case DioExceptionType.badCertificate:
-        return 'Bad certificate with API server';
-
-      case DioExceptionType.badResponse:
-        return _handleStatusCode(
-          error.response?.statusCode,
-        );
-
-      case DioExceptionType.cancel:
-        return 'Request to API server was cancelled';
+        return const ApiErrors("Receive timeout");
 
       case DioExceptionType.connectionError:
-        return 'Connection error occurred';
+        return const ApiErrors("No Internet Connection");
+
+      case DioExceptionType.badCertificate:
+        return const ApiErrors("Bad Certificate");
+
+      case DioExceptionType.cancel:
+        return const ApiErrors("Request Cancelled");
 
       case DioExceptionType.unknown:
-        return 'Unexpected error occurred';
+        return const ApiErrors("Unexpected Error");
 
       case DioExceptionType.transformTimeout:
-        return 'Transform timeout with API server';
+        return const ApiErrors("Transform Timeout");
+
+      case DioExceptionType.badResponse:
+        return _statusCode(error.response?.statusCode);
     }
   }
 
-  static String _handleStatusCode(int? statusCode) {
-    switch (statusCode) {
+  static ApiErrors _statusCode(int? code) {
+    switch (code) {
       case 400:
-        return 'Bad request';
+        return const ApiErrors("Bad Request");
 
       case 401:
-        return 'Unauthorized request';
+        return const ApiErrors("Invalid Email or Password");
 
       case 403:
-        return 'Access forbidden';
+        return const ApiErrors("Forbidden");
 
       case 404:
-        return 'Resource not found';
+        return const ApiErrors("Not Found");
 
       case 500:
-        return 'Internal server error';
+        return const ApiErrors("Server Error");
 
       default:
-        return 'Something went wrong';
+        return const ApiErrors("Something went wrong");
     }
   }
 }

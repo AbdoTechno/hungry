@@ -2,7 +2,7 @@ class LoginResponseModel {
   final String accessToken;
   final String refreshToken;
 
-  LoginResponseModel({
+  const LoginResponseModel({
     required this.accessToken,
     required this.refreshToken,
   });
@@ -10,8 +10,8 @@ class LoginResponseModel {
   factory LoginResponseModel.fromJson(
       Map<String, dynamic> json) {
     return LoginResponseModel(
-      accessToken: json['access_token'],
-      refreshToken: json['refresh_token'],
+      accessToken: json["access_token"] ?? "",
+      refreshToken: json["refresh_token"] ?? "",
     );
   }
 }

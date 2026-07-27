@@ -1,10 +1,12 @@
-import 'package:dio/dio.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
+import 'package:hungry/core/network/api_errors.dart';
 import 'package:hungry/core/network/dio_api_service.dart';
-import 'package:hungry/core/network/dio_exception.dart';
 import 'package:hungry/core/theme/app_colors.dart';
+import 'package:hungry/core/utils/pref_helpers.dart';
 import 'package:hungry/features/auth/data/auth_repo.dart';
 import 'package:hungry/features/auth/widgets/auth_header.dart';
 import 'package:hungry/features/auth/widgets/login_form.dart';
@@ -39,26 +41,30 @@ class _LoginViewState extends State<LoginView> {
   }
 
   Future<void> _handleLogin() async {
+    final accessToken = await PrefHelpers.getToken();
     if (!_formKey.currentState!.validate()) {
       return;
     }
-
     try {
       await authRepo.login(
         _emailController.text.trim(),
         _passwordController.text.trim(),
       );
-
+      if (!mounted) return;
+      log(
+        "Login Successful access token $accessToken",
+      );
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => const Root(),
-        ),
+        MaterialPageRoute(builder: (_) => const Root()),
       );
-    } on DioException catch (e) {
+    } on ApiErrors catch (e) {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(DioExceptionHandler.handle(e)),
+          content: Text(e.message),
+          duration: const Duration(seconds: 2),
+          behavior: SnackBarBehavior.floating,
         ),
       );
     }
