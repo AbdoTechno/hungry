@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:hungry/core/theme/app_colors.dart';
 import 'package:hungry/core/constants/app_sizes.dart';
 import 'package:hungry/features/auth/view/login_view.dart';
-import 'package:hungry/root.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

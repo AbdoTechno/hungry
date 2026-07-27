@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:hungry/core/network/api_errors.dart';
 import 'package:hungry/core/network/dio_exception.dart';
 import 'package:hungry/core/utils/pref_helpers.dart';
 

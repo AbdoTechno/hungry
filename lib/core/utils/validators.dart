@@ -2,15 +2,17 @@ class Validators {
   static final RegExp _emailRegex = RegExp(
     r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
   );
-  
+
   static final RegExp _numericRegex = RegExp(r'[0-9]');
-  
+
   // A more comprehensive special character regex to cover all standard keyboard symbols
   static final RegExp _specialCharRegex = RegExp(
     r'[!@#$%^&*(),.?":{}|<>\-_=+\\\/\[\]~`@#\$%\^&\*\(\)\+=\{\}\[\];:\?<>\.\/]',
   );
 
-  static final RegExp _phoneRegex = RegExp(r'^\+?[0-9]{9,15}$');
+  static final RegExp _phoneRegex = RegExp(
+    r'^\+?[0-9]{9,15}$',
+  );
 
   static bool isNotEmpty(String? value) {
     return value != null && value.trim().isNotEmpty;
@@ -45,12 +47,7 @@ class Validators {
     if (value.length > 20) {
       return 'Password must be at most 20 characters';
     }
-    if (!_numericRegex.hasMatch(value)) {
-      return 'Password must contain at least one number';
-    }
-    if (!_specialCharRegex.hasMatch(value)) {
-      return 'Password must contain at least one special character';
-    }
+
     return null;
   }
 
@@ -65,4 +62,3 @@ class Validators {
     return null;
   }
 }
-
