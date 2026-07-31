@@ -14,12 +14,18 @@ class SignupForm extends StatelessWidget {
     required TextEditingController passwordController,
     required VoidCallback onSignUp,
     required VoidCallback onLogin,
-  })  : _formKey = formKey,
-        _nameController = nameController,
-        _emailController = emailController,
-        _passwordController = passwordController,
-        _onSignUp = onSignUp,
-        _onLogin = onLogin;
+    required String avatarController,
+    required VoidCallback pickAvatar,
+    void Function(String)? onNameChanged,
+  }) : _pickAvatar = pickAvatar,
+       _formKey = formKey,
+       _nameController = nameController,
+       _emailController = emailController,
+       _passwordController = passwordController,
+       _onSignUp = onSignUp,
+       _onLogin = onLogin,
+       _avatarController = avatarController,
+       _onNameChanged = onNameChanged;
 
   final GlobalKey<FormState> _formKey;
   final TextEditingController _nameController;
@@ -27,6 +33,9 @@ class SignupForm extends StatelessWidget {
   final TextEditingController _passwordController;
   final VoidCallback _onSignUp;
   final VoidCallback _onLogin;
+  final VoidCallback _pickAvatar;
+  final String _avatarController;
+  final void Function(String)? _onNameChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +70,7 @@ class SignupForm extends StatelessWidget {
                 }
                 return null;
               },
+              onChanged: _onNameChanged,
             ),
             Gap(AppSizes.spacingHeight16),
             AuthField(
@@ -81,6 +91,34 @@ class SignupForm extends StatelessWidget {
               textInputAction: TextInputAction.done,
               validator: Validators.validatePassword,
             ),
+            Gap(AppSizes.spacingHeight16),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _pickAvatar,
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                  ),
+                  backgroundColor: Colors.white,
+                  foregroundColor: AppColors.primary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    side: const BorderSide(
+                      color: AppColors.primary,
+                    ),
+                  ),
+                  elevation: 0,
+                ),
+                child: const Text(
+                  'Pick an avatar',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
             Gap(AppSizes.spacingHeight24),
             SizedBox(
               width: double.infinity,
@@ -89,7 +127,9 @@ class SignupForm extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -97,7 +137,10 @@ class SignupForm extends StatelessWidget {
                 ),
                 child: const Text(
                   'Sign up',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
@@ -109,7 +152,9 @@ class SignupForm extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primary,
                   foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -117,7 +162,10 @@ class SignupForm extends StatelessWidget {
                 ),
                 child: const Text(
                   'Go To Login ?',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),

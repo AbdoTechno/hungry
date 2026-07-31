@@ -12,6 +12,7 @@ class AuthField extends StatefulWidget {
     this.textInputAction = TextInputAction.next,
     this.validator,
     this.onFieldSubmitted,
+    this.onChanged,
   });
 
   final bool isLogin;
@@ -22,6 +23,7 @@ class AuthField extends StatefulWidget {
   final TextInputAction textInputAction;
   final String? Function(String?)? validator;
   final void Function(String)? onFieldSubmitted;
+  final void Function(String)? onChanged;
 
   @override
   State<AuthField> createState() => _AuthFieldState();
@@ -40,11 +42,16 @@ class _AuthFieldState extends State<AuthField> {
   Widget build(BuildContext context) {
     // If widget.isLogin is true, we are in Login (green background container), so colors should be white.
     // If widget.isLogin is false, we are in Signup (white background container), so colors should be green.
-    final Color color = widget.isLogin ? Colors.white : AppColors.primary;
-    final Color hintColor = widget.isLogin ? Colors.white.withValues(alpha: 0.6) : AppColors.primary.withValues(alpha: 0.6);
+    final Color color = widget.isLogin
+        ? Colors.white
+        : AppColors.primary;
+    final Color hintColor = widget.isLogin
+        ? Colors.white.withValues(alpha: 0.6)
+        : AppColors.primary.withValues(alpha: 0.6);
 
     return TextFormField(
       controller: widget.controller,
+      onChanged: widget.onChanged,
       obscureText: _obscureText,
       keyboardType: widget.keyboardType,
       textInputAction: widget.textInputAction,
@@ -70,7 +77,10 @@ class _AuthFieldState extends State<AuthField> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide(color: color.withValues(alpha: 0.8), width: 1.5),
+          borderSide: BorderSide(
+            color: color.withValues(alpha: 0.8),
+            width: 1.5,
+          ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -78,16 +88,24 @@ class _AuthFieldState extends State<AuthField> {
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.red, width: 1.5),
+          borderSide: const BorderSide(
+            color: Colors.red,
+            width: 1.5,
+          ),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: Colors.red, width: 2),
+          borderSide: const BorderSide(
+            color: Colors.red,
+            width: 2,
+          ),
         ),
         suffixIcon: widget.obscureText
             ? IconButton(
                 icon: Icon(
-                  _obscureText ? Icons.visibility : Icons.visibility_off,
+                  _obscureText
+                      ? Icons.visibility
+                      : Icons.visibility_off,
                   color: color,
                 ),
                 onPressed: () {

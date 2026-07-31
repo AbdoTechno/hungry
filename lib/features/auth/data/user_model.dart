@@ -5,7 +5,8 @@ class UserModel {
   final String name;
   final String role;
   final String avatar;
-  final String? token;
+  final String? creationAt;
+  final String? updatedAt;
 
   UserModel({
     required this.id,
@@ -14,18 +15,20 @@ class UserModel {
     required this.name,
     required this.role,
     required this.avatar,
-    this.token,
+    this.creationAt,
+    this.updatedAt,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      id: json['id'],
-      email: json['email'],
-      password: json['password'],
-      name: json['name'],
-      role: json['role'],
-      avatar: json['avatar'],
-      token: json['token'],
+      id: json['id'] ?? 0,
+      email: json['email']?.toString() ?? '',
+      password: json['password']?.toString() ?? '',
+      name: json['name']?.toString() ?? '',
+      role: json['role']?.toString() ?? '',
+      avatar: json['avatar']?.toString() ?? '',
+      creationAt: json['creationAt']?.toString(),
+      updatedAt: json['updatedAt']?.toString(),
     );
   }
 
@@ -36,6 +39,7 @@ class UserModel {
     'name': name,
     'role': role,
     'avatar': avatar,
-    'token': token
+    'creationAt': creationAt,
+    'updatedAt': updatedAt,
   };
 }
