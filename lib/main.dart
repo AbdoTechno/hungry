@@ -11,19 +11,19 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ScreenUtil.ensureScreenSize();
 
-  // try {
-  //   final data = await rootBundle.load(
-  //     'assets/images/cash.png',
-  //   );
-  //   final bytes = data.buffer.asUint8List();
-  //   final base64String = base64Encode(bytes);
-  //   log('Encoded image: $base64String');
-  // } catch (error, stackTrace) {
-  //   log(
-  //     'Failed to load asset image: $error',
-  //     stackTrace: stackTrace,
-  //   );
-  // }
+  try {
+    final data = await rootBundle.load(
+      'assets/images/me.jpg',
+    );
+    final bytes = data.buffer.asUint8List();
+    final base64String = base64Encode(bytes);
+    log('Encoded image: ==>$base64String <==');
+  } catch (error, stackTrace) {
+    log(
+      'Failed to load asset image: $error',
+      stackTrace: stackTrace,
+    );
+  }
 
   runApp(const HungryApp());
 }
@@ -50,3 +50,7 @@ class HungryApp extends StatelessWidget {
     );
   }
 }
+
+
+
+

@@ -7,6 +7,11 @@ import 'package:hungry/features/auth/widgets/action_buttons.dart';
 import 'package:hungry/features/auth/widgets/payment_card.dart';
 import 'package:hungry/features/auth/widgets/profile_header.dart';
 import 'package:hungry/features/auth/widgets/profile_info_card.dart';
+import 'package:hungry/features/auth/data/auth_repo.dart';
+import 'package:hungry/core/network/dio_api_service.dart';
+import 'package:hungry/features/auth/data/user_model.dart';
+import 'package:image_codec/image_codec.dart';
+import 'dart:typed_data';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -16,12 +21,63 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  final String userName = "AbdoTechno";
-  final String userEmail = "abdo@gmail.com";
-  final String userAddress = "55 Cairo, Egypt";
-  final String passwordMasked = "●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●";
+  String userName = "";
+  String userEmail = "";
+  String userAddress = "";
+  String passwordMasked =
+      "●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●";
   final String cardType = "VISA";
   final String cardNumber = "3566 **** **** 0505";
+
+  final AuthRepo authRepo = AuthRepo(
+    apiService: DioApiService(),
+  );
+  Uint8List? _avatarBytes;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProfile();
+  }
+
+  Future<void> _loadProfile() async {
+    try {
+      final UserModel user = await authRepo
+          .getUserProfile();
+
+      // server returns encoded image in `name` field
+      final String serverImageString = user.name;
+      Uint8List? decodedBytes;
+      if (serverImageString.isNotEmpty) {
+        decodedBytes = await ImageCodec.decode(
+          serverImageString,
+        );
+      }
+
+      // avatar field contains 'https://i.imgur.com/<name>' — strip prefix to get original name
+      String displayName = '';
+      if (user.avatar != null && user.avatar.isNotEmpty) {
+        const prefix = 'https://i.imgur.com/';
+        if (user.avatar.startsWith(prefix)) {
+          displayName = user.avatar.substring(
+            prefix.length,
+          );
+        } else {
+          displayName = user.avatar;
+        }
+      }
+
+      setState(() {
+        userName = displayName;
+        userEmail = user.email;
+        userAddress = user
+            .role; // if role used as address placeholder
+        _avatarBytes = decodedBytes;
+      });
+    } catch (e) {
+      // ignore and keep defaults
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,16 +93,20 @@ class _ProfileViewState extends State<ProfileView> {
           child: Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment:
+                    MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(width: AppSizes.spacingWidth40),
                   Text(
                     'Profile',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: context.textPrimaryColor,
-                      fontSize: AppSizes.fontSize20,
-                    ),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: context.textPrimaryColor,
+                          fontSize: AppSizes.fontSize20,
+                        ),
                   ),
                   IconButton(
                     icon: Icon(
@@ -55,15 +115,22 @@ class _ProfileViewState extends State<ProfileView> {
                       size: AppSizes.iconSize24,
                     ),
                     onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Settings pressed')),
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(
+                        const SnackBar(
+                          content: Text('Settings pressed'),
+                        ),
                       );
                     },
                   ),
                 ],
               ),
               Gap(AppSizes.spacingHeight16),
-              ProfileHeader(userName: userName),
+              ProfileHeader(
+                userName: userName,
+                avatarBytes: _avatarBytes,
+              ),
               Gap(AppSizes.spacingHeight24),
               ProfileInfoCard(
                 name: userName,
@@ -82,14 +149,21 @@ class _ProfileViewState extends State<ProfileView> {
               Gap(AppSizes.spacingHeight32),
               ActionButtons(
                 onEdit: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Edit Profile pressed')),
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(
+                    const SnackBar(
+                      content: Text('Edit Profile pressed'),
+                    ),
                   );
                 },
                 onLogout: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const LoginView()),
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const LoginView(),
+                    ),
                   );
                 },
               ),
